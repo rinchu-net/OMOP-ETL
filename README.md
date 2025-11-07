@@ -18,13 +18,13 @@
 ## データ変換対象の例
 | 臨中ネット DB テーブル | OMOP CDM テーブル | 備考 |
 |----------------------|------------------|------|
-| PatientIdentification, PatientAddress, PatientIDExchange | person | 個人情報の秘匿化方針に基づき変換 |
+| PatientIdentification  PatientAddress | person | 個人情報の秘匿化方針に基づき変換 |
 | PatientVisit | visit_occurrence, observation_period, death | イベント種別ごとに変換先を分岐 |
-| PatientDisease | condition_occurrence, procedure_occurrence, observation, measurement | 病名コードのマッピング方針に基づき変換 |
+| PatientDisease | condition_occurrence, procedure_occurrence, observation, measurement | ICD10コードからマッピングされるドメインに基づき、各テーブルへ振り分け |
 | ObservationResult | measurement, observation, specimen | 検査項目・単位の標準化 |
-| PrescriptionData, InjectionData | drug_exposure, drug_era, dose_era | 薬剤コード・単位・投与経路の標準化 |
-| SSMIX 標準診療部門 | provider | 今回は診療科単位で登録 |
-| 参加施設情報 | care_site | 医療機関番号をマスタ登録 |
+| PrescriptionData  InjectionData | drug_exposure, drug_era, dose_era | 薬剤コード・単位・投与経路の標準化 |
+| 標準診療科コード | provider | 通常は医療従事者のデータが入るが、標準診療科コードを格納 |
+| 参加施設情報 | care_site | 医療機関番号を登録 |
 | 郵便番号 | location | 検討中 |
 
 ## 採用 CDM バージョン
