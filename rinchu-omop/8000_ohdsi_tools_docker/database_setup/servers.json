@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "omopdb_docker",
+      "Group": "Servers",
+      "Host": "omopdb",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "postgres",
+      "Password": "postgres",
+      "SSLMode": "prefer",
+      "Comment": "OHDSI OMOP Database in Docker"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+services:
+  webapi:
+    build:
+      context: ../git/WebAPI
+    container_name: webapi
+    image: rinchu/webapi:${WEBAPI_VERSION}
+    ports:
+      - "18080:8080"
+    volumes:
+      - ../webapi_setting/application.properties:/var/lib/ohdsi/webapi/WEB-INF/classes/application.properties
+#    env_file:
+#      - ../webapi_setting/webapi.env
+    environment:
+      _JAVA_OPTIONS: -Xmx4g
+    networks:
+      - ohdsi-net
+    depends_on:
+      omopdb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/WebAPI/info"]
+      interval: 15s
+      timeout: 10s
+      retries: 30
+
+  atlas:
+    build:
+      context: ../git/Atlas
+    container_name: atlas
+    image: rinchu/atlas:${ATLAS_VERSION}
+    ports:
+      - "18081:8080"
+    environment:
+      # url from Atlas Client to WebAPI container
+      # recomend to set static url ({server name/ip address}:{port}/WebAPI) for Docker host)
+      # (not from atlas container to WebAPI container)
+      WEBAPI_URL: http://localhost:18080/WebAPI/
+    networks:
+      - ohdsi-net
+    depends_on:
+      webapi:
+        condition: service_healthy
+
+  hades:
+    build:
+      context: ../hades_setup
+      dockerfile: rstudio_4.4.3_hades_1.0.2.Dockerfile
+      secrets:
+        - ghpat
+    image: rinchu/hades:${HADES_VERSION}
+    container_name: hades
+    ports:
+      - "18787:8787"
+    volumes:
+      - ../hades_setup:/home/rstudio/hades_setup
+      - ../hades_user:/home/rstudio/hades_user
+    environment:
+      PASSWORD: rstudio
+      JAVA_HOME: /usr/lib/jvm/java-1.8.0-amazon-corretto
+      # Both AMD64 (Windows) and ARM64 (Mac) library paths to support multi-architecture builds
+      LD_LIBRARY_PATH: /usr/lib/jvm/java-1.8.0-amazon-corretto/jre/lib/amd64/server:/usr/lib/jvm/java-1.8.0-amazon-corretto/jre/lib/aarch64/server
+    networks:
+      - ohdsi-net
+
+  omopdb:
+    build:
+      context: ../database_setup
+      dockerfile: Dockerfile
+    container_name: omopdb
+    image: rinchu/omopdb:${OMOPDB_VERSION}
+    ports:
+      # 0.0.0.0:15432 allows connections from any network interface
+      # Change to "127.0.0.1:15432:5432" if you want local-only access
+      - "0.0.0.0:15432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ../database_setup/initdb01_roles.sql:/docker-entrypoint-initdb.d/01-roles.sql
+      - ../database_setup/initdb02_database.sql:/docker-entrypoint-initdb.d/02-database.sql
+      - omopdbdata:/var/lib/postgresql/data
+    networks:
+      - ohdsi-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    ports:
+      - "15050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_ENHANCED_IAM_ENABLED: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+      SCRIPT_NAME: /pgadmin
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+      - ../database_setup/servers.json:/pgadmin4/servers.json
+    networks:
+      - ohdsi-net
+    depends_on:
+      omopdb:
+        condition: service_healthy
+
+networks:
+  ohdsi-net:
+    driver: bridge
+
+volumes:
+  omopdbdata:
+  pgadmindata:
+    
+secrets:
+  ghpat:
+    file: ../hades_setup/ghpat.txt

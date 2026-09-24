@@ -1,0 +1,5 @@
+DROP SCHEMA IF EXISTS :source_schema CASCADE;
+DROP SCHEMA IF EXISTS :working_schema CASCADE;
+DROP SCHEMA IF EXISTS :production_schema CASCADE;
+DROP SCHEMA IF EXISTS :atlasresult_schema CASCADE;
+DROP SCHEMA IF EXISTS :temp_schema CASCADE;

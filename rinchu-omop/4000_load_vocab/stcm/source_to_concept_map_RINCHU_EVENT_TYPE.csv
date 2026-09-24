@@ -1,0 +1,2 @@
+source_code,source_concept_id,source_vocabulary_id,source_code_description,target_concept_id,target_vocabulary_id,valid_start_date,valid_end_date,invalid_reason
+EHR,32817,RINCHU_EVENT_TYPE,EHR,32817,Type Concept,1900/1/1,2099/12/31,

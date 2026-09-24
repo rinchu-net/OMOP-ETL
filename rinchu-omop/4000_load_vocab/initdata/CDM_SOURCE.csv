@@ -1,0 +1,2 @@
+cdm_source_name,cdm_source_abbreviation,cdm_holder,source_description,source_documentation_reference,cdm_etl_reference,source_release_date,cdm_release_date,cdm_version,cdm_version_concept_id,vocabulary_version
+Rinchu Standard Database,Rinchu Standard Database,Rinchu,Rinchu Standard Database,NULL,"OMOP CDM v5.4 ETL Specification for Rinchu Standard Database, version 1.0",2025-01-01,2025-12-16,v5.4.2,705800,v20250827

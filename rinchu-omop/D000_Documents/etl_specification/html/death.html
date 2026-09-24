@@ -1,0 +1,75 @@
+<h2>Table name: death</h2>
+
+<h3>Reading from patientvisit</h3>
+
+<p>ターゲットテーブル:death
+<br>・当テーブルはPatientVisitテーブルから生成する
+<br>
+<br>本項では、PatientVisitをもとに生成された、deathテーブルの各項目のとの出力結果の対応を記載する。
+<br>・PatientVisitに退院実施レコードの退院先コードが「死亡」の場合、退院日を死亡日としてレコードを生成する
+<br></p>
+
+<img src="html_files/image5.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>person.person_source_valueと結合してperson_idを取得・登録する<br></td>
+	</tr>
+	<tr>
+		<td>death_date</td>
+		<td>pv_discharge_date</td>
+		<td>TO_DATE(pv_discharge_date,&nbsp;'YYYYMMDD')&nbsp;AS&nbsp;death_date</td>
+		<td>PV_ADTSEGMENT='ADT^A03^ADT_A03’(退院実施)かつPV_DISCHARGE_CD_L='20'(死亡)のレコードのみ、PV_DISCHARGE_DATEを登録する
+<br><br></td>
+	</tr>
+	<tr>
+		<td>death_datetime</td>
+		<td>pv_discharge_date<br>pv_discharge_time</td>
+		<td><br>CASE
+<br>&nbsp;&nbsp;WHEN&nbsp;pv_discharge_time&nbsp;=&nbsp;'999999'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;pv_discharge_time&nbsp;IS&nbsp;NULL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;pv_discharge_time&nbsp;~&nbsp;'^[0-9]{6}$'&nbsp;=&nbsp;false&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(pv_discharge_time,&nbsp;1,&nbsp;2)::integer&nbsp;>=&nbsp;24&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(pv_discharge_time,&nbsp;3,&nbsp;2)::integer&nbsp;>=&nbsp;60&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(pv_discharge_time,&nbsp;5,&nbsp;2)::integer&nbsp;>=&nbsp;60&nbsp;
+<br>&nbsp;&nbsp;THEN&nbsp;TO_TIMESTAMP(pv_discharge_date&nbsp;||&nbsp;'000000',&nbsp;'YYYYMMDDHH24MISS')
+<br>&nbsp;&nbsp;ELSE&nbsp;TO_TIMESTAMP(pv_discharge_date&nbsp;||&nbsp;pv_discharge_time,&nbsp;'YYYYMMDDHH24MISS')
+<br>END&nbsp;AS&nbsp;death_datetime
+<br><br></td>
+		<td>PV_ADTSEGMENT='ADT^A03^ADT_A03’(退院実施)かつPV_DISCHARGE_CD_L='20'(死亡)のレコードのみ、PV_DISCHARGE_DATE+PV_DISCHARGE_TIMEを登録する<br><br></td>
+	</tr>
+	<tr>
+		<td>death_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817（EHR）固定とする</td>
+	</tr>
+	<tr>
+		<td>cause_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>cause_source_value</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>cause_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+</table>
+

@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #000000;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 50px;
+    animation: slideDown 0.6s ease-out;
+}
+
+.header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: none;
+    color: #1266a3;
+}
+
+.header p {
+    font-size: 18px;
+    opacity: 1;
+    color: #333333;
+}
+
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.portal-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: fadeInUp 0.6s ease-out backwards;
+    cursor: pointer;
+}
+
+.portal-card:nth-child(1) { animation-delay: 0.1s; }
+.portal-card:nth-child(2) { animation-delay: 0.2s; }
+.portal-card:nth-child(3) { animation-delay: 0.3s; }
+.portal-card:nth-child(4) { animation-delay: 0.4s; }
+
+.portal-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.portal-card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-icon {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    padding: 20px;
+}
+
+.card-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.card-atlas { background: linear-gradient(135deg, #e8f2f8 0%, #d9e8f5 100%); color: white; }
+.card-webapi { background: linear-gradient(135deg, #e8f4f6 0%, #dbeef2 100%); color: white; }
+.card-hades { background: linear-gradient(135deg, #e8f6f9 0%, #daf0f5 100%); color: white; }
+.card-pgadmin { background: linear-gradient(135deg, #e8f4f4 0%, #daeef0 100%); color: white; }
+
+.card-content {
+    padding: 25px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.card-url {
+    font-size: 12px;
+    color: #999;
+    word-break: break-all;
+    margin-bottom: 15px;
+    font-family: 'Courier New', monospace;
+    background: #f5f5f5;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.card-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #1266a3 0%, #0d4a7a 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.card-atlas .card-button { background: linear-gradient(135deg, #1266a3 0%, #0d4a7a 100%); }
+.card-webapi .card-button { background: linear-gradient(135deg, #1e88a0 0%, #155a7e 100%); }
+.card-hades .card-button { background: linear-gradient(135deg, #2a9db4 0%, #1a6f8c 100%); }
+.card-pgadmin .card-button { background: linear-gradient(135deg, #158b8f 0%, #0f6369 100%); }
+
+.card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.button-group a {
+    text-decoration: none;
+    display: block;
+}
+
+.info-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.6s ease-out 0.5s backwards;
+}
+
+.info-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 3px solid #1266a3;
+    padding-bottom: 10px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    border-left: 4px solid #1266a3;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.info-item h3 {
+    color: #1266a3;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.info-link {
+    color: #1266a3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.info-link:hover {
+    color: #0d4a7a;
+    text-decoration: underline;
+}
+
+.credentials {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 13px;
+    border: 1px solid #e0e0e0;
+}
+
+.credentials strong {
+    color: #1266a3;
+}
+
+.credentials code {
+    background: #f5f5f5;
+    color: #1266a3;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+.status-badge {
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        tra#666666;
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 1
+.footer {
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .portal-grid {
+        gap: 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.troubleshooting {
+    background: #fff3cd;
+    border-left: 4px solid #ff6b6b;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #856404;
+}
+
+.troubleshooting h4 {
+    margin-bottom: 10px;
+    color: #ff6b6b;
+}
+
+.troubleshooting ul {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+.troubleshooting li {
+    margin-bottom: 5px;
+}
+
+/* サービス稼働確認セクション */
+.container-status-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.refresh-btn {
+    background: linear-gradient(135deg, #1266a3 0%, #0d4a7a 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.last-update {
+    font-size: 12px;
+    color: #999;
+}
+
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-list .service-item {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.service-list .service-item:hover {
+    background: #f9f9f9;
+    border-color: #1266a3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.service-list .service-name {
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    font-size: 15px;
+    min-width: 120px;
+}
+
+.service-list .service-status {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    min-width: auto;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+.service-list .service-status.healthy {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.service-list .service-status.unhealthy {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+        .card-status {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+            display: inline-block;
+            vertical-align: middle;
+            animation: pulse 1.5s infinite;
+        }
+
+        .card-status.healthy {
+            animation: none;
+        }
+
+        .card-status.unhealthy {
+            animation: none;
+        }
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+
+@media (max-width: 768px) {
+    .container-status-controls {
+        flex-wrap: wrap;
+    }
+
+    .service-list .service-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .service-list .service-name {
+        min-width: auto;
+    }
+}

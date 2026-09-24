@@ -1,0 +1,6 @@
+﻿source_code,source_concept_id,source_vocabulary_id,source_code_description,target_concept_id,target_vocabulary_id,valid_start_date,valid_end_date,invalid_reason
+"=",0,"RINCHU_OBX_OPERATOR","=",4172703,"SNOMED",20020131,20991231,""
+"<",0,"RINCHU_OBX_OPERATOR","<",4171756,"SNOMED",20020131,20991231,""
+"<=",0,"RINCHU_OBX_OPERATOR","<=",4171754,"SNOMED",20020131,20991231,""
+">",0,"RINCHU_OBX_OPERATOR",">",4172704,"SNOMED",20020131,20991231,""
+">=",0,"RINCHU_OBX_OPERATOR",">=",4171755,"SNOMED",20020131,20991231,""

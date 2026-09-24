@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHDSI Tools Docker</title>
+    <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <div class="header">
+            <img src="img/h243-ohdsi-logo-with-text.png" alt="OHDSI Logo" style="max-width: 300px; margin-bottom: 20px;">
+            <h1>OHDSI Tools Docker Portal</h1>
+            <p>Docker で実行される OHDSI エコシステムツールへのアクセスポイント</p>
+        </div>
+
+        <!-- ポータルカード -->
+        <div class="portal-grid">
+            <!-- Atlas -->
+            <div class="portal-card card-atlas">
+                <a href="http://localhost:18081/atlas" target="_blank">
+                    <div class="card-icon">
+                        <img src="img/ohdsi-atlas.png" alt="Atlas Icon">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Atlas <img src="img/status-stopping.svg" alt="Status" class="card-status" data-service="atlas"></div>
+                        <div class="card-description">
+                            OHDSI の標準ユースケース実装のための統合的な分析環境です。
+                        </div>
+                        <div class="card-url">http://localhost:18081</div>
+                        <button class="card-button">Open Atlas</button>
+                    </div>
+                </a>
+            </div>
+
+            <!-- WebAPI -->
+            <div class="portal-card card-webapi">
+                <div class="card-icon">
+                    <span style="font-size: 60px;">🔌</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">WebAPI <img src="img/status-stopping.svg" alt="Status" class="card-status" data-service="webapi"></div>
+                    <div class="card-description">
+                        OMOP CDM へのアクセスと変換機能を提供する RESTful API。
+                    </div>
+                    <div class="card-url">http://localhost:18080/WebAPI</div>
+                    <div class="button-group">
+                        <button class="card-button" onclick="openJsonResponse('http://localhost:18080/WebAPI/info', 'Version')">Version</button>
+                        <button class="card-button" onclick="openJsonResponse('http://localhost:18080/WebAPI/health', 'System health')">System health</button>
+                        <button class="card-button" onclick="openJsonResponse('http://localhost:18080/WebAPI/source/sources', 'Data Sources')">Data Sources</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HADES (RStudio) -->
+            <div class="portal-card card-hades">
+                <a href="http://localhost:18787" target="_blank">
+                    <div class="card-icon">
+                        <img src="img/ohdsi-hades.png" alt="HADES Icon">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">RStudio / HADES <img src="img/status-stopping.svg" alt="Status" class="card-status" data-service="rstudio"></div>
+                        <div class="card-description">
+                            HADES ツールセットを使用した R ベースの統計分析環境です。
+                        </div>
+                        <div class="card-url">http://localhost:18787</div>
+                        <button class="card-button">Open RStudio</button>
+                        <div class="credentials">
+                            <strong>Login:</strong><br>
+                            User: <code>rstudio</code><br>
+                            Pass: <code>rstudio</code>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- pgAdmin -->
+            <div class="portal-card card-pgadmin">
+                <a href="http://localhost:15050/pgadmin" target="_blank">
+                    <div class="card-icon">
+                        <img src="img/pgadmin.png" alt="pgAdmin Icon">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">pgAdmin <img src="img/status-stopping.svg" alt="Status" class="card-status" data-service="pgadmin"></div>
+                        <div class="card-description">
+                            PostgreSQL データベース管理および SQL エディタ。
+                        </div>
+                        <div class="card-url">http://localhost:15050/pgadmin</div>
+                        <button class="card-button">Open pgAdmin</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 情報セクション -->
+        <div class="info-section">
+            <h2>アクセス情報と使用方法</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>プロトコル</h3>
+                    <p>
+                        すべてのサービスは <code>HTTP</code> で提供されています。
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>データ永続性</h3>
+                    <p>
+                        データベースとpgAdminの設定は Docker ボリュームで保存されています。<br>
+                        コンテナ再起動後もデータは保持されます。
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>コンテナ管理</h3>
+                    <p>
+                        <strong>起動:</strong> <code>controller.bat start</code><br>
+                        <strong>停止:</strong> <code>controller.bat stop</code><br>
+                        <strong>再起動:</strong> <code>controller.bat restart</code>
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>OMOP CDM について</h3>
+                    <p>
+                        OMOP CDM（Observational Medical Outcomes Partnership Common Data Model）は、医療データを標準化されたフォーマットに変換するための国際的なデータモデルです。異なるソースのヘルスケアデータを一貫した形式で分析できるようにします。<br>
+                        <a href="https://ohdsi.github.io/CommonDataModel/" target="_blank" class="info-link">公式ドキュメント →</a>
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>Atlas について</h3>
+                    <p>
+                        分析デザイン、コホート定義、患者レベルの予測の管理と実行ができます。WebAPI に接続されています。<br>
+                        <a href="https://github.com/OHDSI/Atlas/wiki" target="_blank" class="info-link">GitHub リポジトリ →</a>
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>WebAPI について</h3>
+                    <p>
+                        OMOP CDM（共通データモデル）へのアクセスと変換機能を提供する RESTful API です。<br>
+                        Atlasと連携してクエリ実行やコホート定義の管理を行います。<br>
+                        <a href="https://github.com/OHDSI/WebAPI/wiki" target="_blank" class="info-link">GitHub リポジトリ →</a>
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>HADES について</h3>
+                    <p>
+                        HADES（Health Analytics Data-to-Evidence Suite）は R ベースの分析ツールセットです。<br>
+                        <a href="https://ohdsi.github.io/Hades/" target="_blank" class="info-link">公式ドキュメント →</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="troubleshooting">
+                <h4>サービスに接続できない場合</h4>
+                <ul>
+                    <li><strong>コンテナが起動しているか確認:</strong> <code>docker ps</code> で確認してください</li>
+                    <li><strong>ファイアウォール設定:</strong> 指定されたポートがブロックされていないか確認してください</li>
+                    <li><strong>ポート競合:</strong> 別のアプリケーションが同じポートを使用していないか確認</li>
+                    <li><strong>メモリ不足:</strong> Docker に十分なメモリが割り当てられているか確認（推奨: 8GB以上）</li>
+                    <li><strong>ログ確認:</strong> <code>docker logs &lt;container_name&gt;</code> でエラーログを確認</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <div class="footer">
+            <p>本ポータルは開発/テスト環境向けです。本番環境での使用時はセキュリティ設定の見直しをしてください。</p>
+            <p style="margin-top: 10px;">Last Updated: 2026-01-21</p>
+        </div>
+    </div>
+
+    <script>
+        // サービス稼働確認関数
+        const services = [
+            { name: 'atlas', url: 'http://localhost:18081', element: 0 },
+            { name: 'webapi', url: 'http://localhost:18080/WebAPI/info', element: 1 },
+            { name: 'rstudio', url: 'http://localhost:18787', element: 2 },
+            { name: 'pgadmin', url: 'http://localhost:15050/pgadmin', element: 3 }
+        ];
+
+        async function checkServiceStatus() {
+            // 各サービスをチェック
+            for (let service of services) {
+                try {
+                    const response = await Promise.race([
+                        fetch(service.url, { method: 'HEAD', mode: 'no-cors' }),
+                        new Promise((_, reject) =>
+                            setTimeout(() => reject(new Error('Timeout')), 3000)
+                        )
+                    ]);
+                    
+                    // 成功 - カードのバッジを更新
+                    const cardBadge = document.querySelector(`[data-service="${service.name}"]`);
+                    if (cardBadge) {
+                        cardBadge.src = 'img/status-running.svg';
+                        cardBadge.className = 'card-status healthy';
+                    }
+                } catch (error) {
+                    // 失敗 - カードのバッジを更新
+                    const cardBadge = document.querySelector(`[data-service="${service.name}"]`);
+                    if (cardBadge) {
+                        cardBadge.src = 'img/status-stopping.svg';
+                        cardBadge.className = 'card-status unhealthy';
+                    }
+                }
+            }
+        }
+
+        // WebAPI JSONレスポンス表示関数
+        function openJsonResponse(url, title) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const jsonString = JSON.stringify(data, null, 2);
+                    const newWindow = window.open();
+                    newWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html lang="ja">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>${title} - WebAPI Response</title>
+                            <style>
+                                body {
+                                    font-family: 'Courier New', monospace;
+                                    margin: 20px;
+                                    background-color: #f5f5f5;
+                                }
+                                .container {
+                                    background-color: white;
+                                    padding: 20px;
+                                    border-radius: 8px;
+                                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                                }
+                                h1 {
+                                    color: #1266a3;
+                                    margin-top: 0;
+                                }
+                                pre {
+                                    background-color: #f5f5f5;
+                                    border: 1px solid #ddd;
+                                    border-radius: 4px;
+                                    padding: 15px;
+                                    overflow-x: auto;
+                                    font-size: 13px;
+                                    line-height: 1.5;
+                                    color: #333;
+                                }
+                                button {
+                                    background: linear-gradient(135deg, #1266a3 0%, #0d4a7a 100%);
+                                    color: white;
+                                    padding: 10px 20px;
+                                    border-radius: 6px;
+                                    border: none;
+                                    cursor: pointer;
+                                    font-weight: bold;
+                                    transition: all 0.3s ease;
+                                }
+                                button:hover {
+                                    transform: scale(1.05);
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="container">
+                                <h1>${title}</h1>
+                                <pre>${escapeHtml(jsonString)}</pre>
+                                <button onclick="navigator.clipboard.writeText(\`${escapeHtml(jsonString)}\`).then(() => alert('JSON をコピーしました！'))">Copy to Clipboard</button>
+                            </div>
+                        </body>
+                        </html>
+                    `);
+                    newWindow.document.close();
+                })
+                .catch(error => {
+                    alert('Error: ' + error.message);
+                    console.error('Error:', error);
+                });
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;',
+                '`': '&#96;'
+            };
+            return text.replace(/[&<>"'`]/g, m => map[m]);
+        }
+
+        // ページロード時に初期チェック
+        document.addEventListener('DOMContentLoaded', function() {
+            checkServiceStatus();
+            // 30秒ごとに自動更新
+            setInterval(checkServiceStatus, 30000);
+        });
+    </script>
+</body>
+</html>

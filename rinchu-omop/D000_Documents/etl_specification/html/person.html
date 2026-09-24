@@ -1,0 +1,269 @@
+<h2>Table name: person</h2>
+
+<h3>Reading from patientidentification</h3>
+
+<p>ターゲットテーブル:person
+<br>・当テーブルはPatientIdentification、PatientAddress、および郵便番号マスタを患者IDをキーに結合したデータをもとに生成する
+<br>
+<br>本項では、PatientIdentificationをもとに生成された、personテーブルの各項目のとの出力結果の対応を記載する。</p>
+
+<img src="html_files/image1.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>pi_unique_id</td>
+		<td></td>
+		<td>SSMIX標準DBにオリジナルの患者IDとは別に施設ごとのユニークIDが採番されているので、それを利用<br></td>
+	</tr>
+	<tr>
+		<td>gender_concept_id</td>
+		<td>sex</td>
+		<td>CASE
+<br>&nbsp;&nbsp;WHEN&nbsp;gender_source_value&nbsp;=&nbsp;'M'&nbsp;THEN&nbsp;8507
+<br>&nbsp;&nbsp;WHEN&nbsp;gender_source_value&nbsp;=&nbsp;'F'&nbsp;THEN&nbsp;8532
+<br>&nbsp;&nbsp;ELSE&nbsp;0
+<br>END&nbsp;AS&nbsp;gender_concept_id</td>
+		<td>固定変換
+<br>F：8532
+<br>M：8507<br></td>
+	</tr>
+	<tr>
+		<td>year_of_birth</td>
+		<td>birthdate</td>
+		<td>EXTRACT(YEAR&nbsp;FROM&nbsp;sch_birthdate)&nbsp;</td>
+		<td>生年月日の年を登録<br></td>
+	</tr>
+	<tr>
+		<td>month_of_birth</td>
+		<td>birthdate</td>
+		<td>EXTRACT(MONTH&nbsp;FROM&nbsp;sch_birthdate)&nbsp;</td>
+		<td>生年月日の月を登録<br></td>
+	</tr>
+	<tr>
+		<td>day_of_birth</td>
+		<td>birthdate</td>
+		<td>EXTRACT(DAY&nbsp;FROM&nbsp;sch_birthdate)&nbsp;</td>
+		<td>生年月日の日を登録<br></td>
+	</tr>
+	<tr>
+		<td>birth_datetime</td>
+		<td>birthdate</td>
+		<td></td>
+		<td>生年月日を登録<br></td>
+	</tr>
+	<tr>
+		<td>race_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>0&nbsp;固定</td>
+	</tr>
+	<tr>
+		<td>ethnicity_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>0&nbsp;固定</td>
+	</tr>
+	<tr>
+		<td>location_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td>設定しない</td>
+	</tr>
+	<tr>
+		<td>care_site_id</td>
+		<td></td>
+		<td></td>
+		<td>care_siteに医療機関番号を登録し、そのcare_site_idを登録する
+<br>（施設ごとのETLではその施設固定値となるが、医科と歯科で医療機関番号異なる場合は考慮が必要）</td>
+	</tr>
+	<tr>
+		<td>person_source_value</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>PATIENT_IDをそのまま登録する<br></td>
+	</tr>
+	<tr>
+		<td>gender_source_value</td>
+		<td>sex</td>
+		<td></td>
+		<td>性別をそのまま登録する（男性、女性以外の性別が登録されている場合もそのまま）<br></td>
+	</tr>
+	<tr>
+		<td>gender_source_concept_id</td>
+		<td>sex</td>
+		<td>CASE
+<br>&nbsp;&nbsp;WHEN&nbsp;gender_source_value&nbsp;=&nbsp;'M'&nbsp;THEN&nbsp;8507
+<br>&nbsp;&nbsp;WHEN&nbsp;gender_source_value&nbsp;=&nbsp;'F'&nbsp;THEN&nbsp;8532
+<br>&nbsp;&nbsp;ELSE&nbsp;0
+<br>END&nbsp;AS&nbsp;gender_concept_id</td>
+		<td>固定変換
+<br>F：8532
+<br>M：8507<br></td>
+	</tr>
+	<tr>
+		<td>race_source_value</td>
+		<td></td>
+		<td></td>
+		<td>SSMIX標準DBにカラムはあるがデータはないので対象外とする</td>
+	</tr>
+	<tr>
+		<td>race_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>設定しない</td>
+	</tr>
+	<tr>
+		<td>ethnicity_source_value</td>
+		<td></td>
+		<td></td>
+		<td>SSMIX標準DBにカラムはあるがデータはないので対象外とする</td>
+	</tr>
+	<tr>
+		<td>ethnicity_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>設定しない</td>
+	</tr>
+</table>
+
+<h3>Reading from patientaddress</h3>
+
+<p>本項では、PatientAddressをもとに生成された、personテーブルの各項目のとの出力結果の対応を記載する。
+<br>・PatientAddressは１つのPATIEND_IDで複数のレコードを保持する場合があるため、もっとも直近の住所レコードを採用する
+<br>・PatientAddressが保持する郵便番号から都道府県番号に変換し、locationと紐づけを行う
+<br>
+<br></p>
+
+<img src="html_files/image2.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>SSMIX標準DBにオリジナルの患者IDとは別に施設ごとのユニークIDが採番されているので、それを利用<br></td>
+	</tr>
+	<tr>
+		<td>gender_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>year_of_birth</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>month_of_birth</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>day_of_birth</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>birth_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>race_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>0&nbsp;固定</td>
+	</tr>
+	<tr>
+		<td>ethnicity_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>0&nbsp;固定</td>
+	</tr>
+	<tr>
+		<td>location_id</td>
+		<td>postal_cd</td>
+		<td></td>
+		<td>郵便番号から郵便番号マスタを介して都道府県名を取得後、location_idに変換<br></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td>設定しない</td>
+	</tr>
+	<tr>
+		<td>care_site_id</td>
+		<td></td>
+		<td></td>
+		<td>care_siteに医療機関番号を登録し、そのcare_site_idを登録する
+<br>（施設ごとのETLではその施設固定値となるが、医科と歯科で医療機関番号異なる場合は考慮が必要）</td>
+	</tr>
+	<tr>
+		<td>person_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>gender_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>gender_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>race_source_value</td>
+		<td></td>
+		<td></td>
+		<td>SSMIX標準DBにカラムはあるがデータはないので対象外とする</td>
+	</tr>
+	<tr>
+		<td>race_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>設定しない</td>
+	</tr>
+	<tr>
+		<td>ethnicity_source_value</td>
+		<td></td>
+		<td></td>
+		<td>SSMIX標準DBにカラムはあるがデータはないので対象外とする</td>
+	</tr>
+	<tr>
+		<td>ethnicity_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>設定しない</td>
+	</tr>
+</table>
+
