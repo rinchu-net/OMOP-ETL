@@ -1,0 +1,4 @@
+﻿source_code,source_concept_id,source_vocabulary_id,source_code_description,target_concept_id,target_vocabulary_id,valid_start_date,valid_end_date,invalid_reason
+"100",0,"RINCHU_SPM_CD","100|尿",4046280,"SNOMED",2002-01-31,2099-12-31,""
+"190",0,"RINCHU_SPM_CD","190|便",4002879,"SNOMED",2002-01-31,2099-12-31,""
+"200",0,"RINCHU_SPM_CD","200|血液",4001225,"SNOMED",2002-01-31,2099-12-31,""

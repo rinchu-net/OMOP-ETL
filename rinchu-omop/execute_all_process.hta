@@ -1,0 +1,972 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <HTA:APPLICATION
+    ID="ETLMENU"
+    VERSION="1.0"
+    APPLICATIONNAME="ETL Execute Menu"
+    SCROLL="no"
+    WINDOWSTATE="normal"
+  />
+  <title>ETL Execute Menu</title>
+  <style>
+    /* ================================================================
+       Reset & Base Styles
+       ================================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    /* ================================================================
+       Header
+       ================================================================ */
+    header {
+      background: #1e40af;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    /* ================================================================
+       Toolbar Buttons
+       ================================================================ */
+    .toolbar {
+      background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
+      padding: 12px;
+      border-bottom: 2px solid #e1e8ed;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .toolbar-top {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+    }
+
+    .toolbar-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+    }
+
+    /* Mode Selection Tabs */
+    .mode-section {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid #e0e6ed;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .mode-label {
+      font-weight: 600;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mode-options {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 6px 0;
+    }
+
+    .radio-option input[type="radio"] {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: #1e40af;
+    }
+
+    .radio-label {
+      font-size: 13px;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .radio-option input[type="radio"]:checked + .radio-label {
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    /* Start Step Input */
+    .start-step-section {
+      background: white;
+      border-radius: 6px;
+      padding: 10px 12px;
+      border: 1px solid #e0e6ed;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .start-step-section.show {
+      display: flex;
+    }
+
+    .start-step-section label {
+      font-weight: 600;
+      font-size: 12px;
+      color: #333;
+      margin: 0;
+    }
+
+    .start-step-section input[type="text"] {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 70px;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .start-step-section input[type="text"]:focus {
+      outline: none;
+      border-color: #1e40af;
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 0;
+      margin-top: 4px;
+    }
+
+    .checkbox-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .checkbox-wrapper input[type="checkbox"] {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+    }
+
+    .checkbox-custom {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ddd;
+      border-radius: 3px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .checkbox-wrapper input[type="checkbox"]:checked ~ .checkbox-custom {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      border-color: #4CAF50;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    }
+
+    .checkbox-wrapper input[type="checkbox"]:checked ~ .checkbox-custom::after {
+      content: "✓";
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .option-text {
+      font-size: 13px;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    button {
+      padding: 5px 14px;
+      margin: 0 4px;
+      border: 1px solid #999;
+      background: #e0e0e0;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+
+    .toolbar-top button {
+      font-size: 11px;
+    }
+
+    .btn-run {
+      background: #4CAF50;
+      color: white;
+      border: 1px solid #45a049;
+    }
+
+    .btn-run:hover {
+      background: #45a049;
+    }
+
+    /* ================================================================
+       Content Area
+       ================================================================ */
+    .content {
+      display: flex;
+      flex: 1;
+      overflow: visible;
+    }
+
+    .panel {
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .left {
+      width: 100%;
+      border-right: 1px solid #ccc;
+      background: #f8f8f8;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-content: start;
+      overflow: visible !important;
+    }
+
+    .right {
+      display: none;
+    }
+
+    /* ================================================================
+       Step Cards
+       ================================================================ */
+    .step {
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      border-radius: 8px;
+      background: white;
+      min-height: 45px;
+      text-align: left;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .step:hover {
+      border-color: #999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .step.selected {
+      background: #4CAF50;
+      color: white;
+      border-color: #45a049;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }
+
+    .step.selected::after {
+      content: "✓";
+      position: absolute;
+      font-size: 20px;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      margin: 0;
+      bottom: auto;
+      border: none;
+    }
+
+    .step input {
+      display: none;
+    }
+
+    .step label {
+      margin: 0;
+      cursor: pointer;
+      flex: 1;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .step strong {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* ================================================================
+       Detail Panel (Hidden)
+       ================================================================ */
+    .detail {
+      display: none;
+    }
+
+    .detail-label {
+      display: none;
+    }
+
+    .detail-value {
+      display: none;
+    }
+
+    #detailPanel {
+      display: none;
+    }
+
+    /* ================================================================
+       Execution Log Modal
+       ================================================================ */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 6px;
+      width: 85%;
+      height: 75%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+
+    .modal-body {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      font-family: monospace;
+      font-size: 11px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* ================================================================
+       Footer / Action Buttons
+       ================================================================ */
+    .footer {
+      width: 100%;
+      background: white;
+      padding: 12px 15px;
+      border-top: 1px solid #ccc;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+
+    .command-display {
+      flex: 1;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #333;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      min-height: 40px;
+      max-height: 100px;
+      overflow-y: auto;
+      line-height: 1.4;
+      display: block;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================================
+       Header Section
+       ============================================================ -->
+
+  <!-- ============================================================
+       Toolbar / Button Section
+       ============================================================ -->
+  <div class="toolbar">
+    <div class="toolbar-options">
+      <!-- Execution Mode Selection -->
+      <div class="mode-section">
+        <span class="mode-label">📋 実行モード</span>
+        <div class="mode-options">
+          <label class="radio-option">
+            <input type="radio" name="execMode" value="start" checked onchange="onModeChange()">
+            <span class="radio-label">開始STEPを指定して一括実行</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="execMode" value="select" onchange="onModeChange()">
+            <span class="radio-label">実行STEPを選択して個別実行</span>
+          </label>
+          <hr style="margin: 4px 0; border: none; border-top: 1px solid #ccc;">
+          <label class="radio-option">
+            <input type="radio" name="athenaMode" value="update" checked onchange="updateCommandDisplay()">
+            <span class="radio-label">ATHENA Vocabularyを更新する</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="athenaMode" value="skip" onchange="updateCommandDisplay()">
+            <span class="radio-label">ATHENA Vocabularyを更新しない</span>
+          </label>
+        </div>
+
+        <!-- Start Step Number -->
+        <div class="start-step-section" id="startStepGroup">
+          <label for="startStepNum">開始STEP:</label>
+          <input type="text" id="startStepNum" placeholder="1-16" onchange="updateCommandDisplay()" oninput="updateCommandDisplay()">
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar-top">
+      <button onclick="clearAll()">Clear All</button>
+      <button onclick="self.close()">Exit</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Main Content Area
+       ============================================================ -->
+  <div class="content">
+    <div class="left panel" id="stepsList"></div>
+  </div>
+
+  <!-- ============================================================
+       Footer / Action Button
+       ============================================================ -->
+  <div class="footer">
+    <div class="command-display" id="commandDisplay"></div>
+    <button class="btn-run" onclick="runSteps()" style="flex-shrink: 0;">execute_all_process.bat実行</button>
+  </div>
+
+  <!-- ============================================================
+       Execution Log Modal
+       ============================================================ -->
+  <div class="modal" id="logModal">
+    <div class="modal-content">
+      <div class="modal-header">実行ログ</div>
+      <div class="modal-body" id="logContent"></div>
+      <div class="modal-footer">
+        <button onclick="closeLog()">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       JavaScript / VBScript
+       ============================================================ -->
+  <script language="JScript">
+    // ================================================================
+    // Global Variables
+    // ================================================================
+    var ROOT_DIR = '';
+    var steps = [
+      {
+        id: 1,
+        name: "Create schema",
+        folder: "1000_database_setup\\02_schema",
+        batch: "create_schema.bat",
+        desc: "データベーススキーマを作成します"
+      },
+      {
+        id: 2,
+        name: "Create source tables",
+        folder: "1000_database_setup\\03_table_source",
+        batch: "create_table.bat",
+        desc: "ソーステーブルを作成します"
+      },
+      {
+        id: 3,
+        name: "Create OMOP tables",
+        folder: "1000_database_setup\\04_table_omop",
+        batch: "create_table.bat",
+        desc: "OMOPテーブルを作成します"
+      },
+      {
+        id: 4,
+        name: "ETL setup",
+        folder: "2000_etl_setup\\bat",
+        batch: "create_etl.bat",
+        desc: "ETLセットアップを行います"
+      },
+      {
+        id: 5,
+        name: "Load source data",
+        folder: "3000_load_source\\bat",
+        batch: "01_import_source.BAT;02_import_master.BAT",
+        desc: "ソースデータをロードします"
+      },
+      {
+        id: 6,
+        name: "Load ATHENA vocabulary",
+        folder: "4000_load_vocab\\bat",
+        batch: "01_import_athena.BAT",
+        desc: "ATHENAボキャブラリをロードします"
+      },
+      {
+        id: 7,
+        name: "Auto-generate mapping",
+        folder: "4000_load_vocab\\bat",
+        batch: "02_generate_automapping.BAT",
+        desc: "ATHENAからマッピングテーブルを生成します"
+      },
+      {
+        id: 8,
+        name: "Import mapping tables",
+        folder: "4000_load_vocab\\bat",
+        batch: "03_import_stcm.BAT",
+        desc: "マッピングテーブルCSVをインポートします"
+      },
+      {
+        id: 9,
+        name: "Import initial data",
+        folder: "4000_load_vocab\\bat",
+        batch: "04_import_initdata.BAT",
+        desc: "OMOP初期データをインポートします"
+      },
+      {
+        id: 10,
+        name: "ETL execution (staging)",
+        folder: "5000_etl_execute\\bat",
+        batch: "01_etl_execution_to_stem.bat",
+        desc: "ETL処理（ステージング）を実行します"
+      },
+      {
+        id: 11,
+        name: "Staging table Mapping",
+        folder: "5000_etl_execute\\bat",
+        batch: "02_etl_execution_stem_mapped.bat",
+        desc: "中間テーブルマッピング付与を実行します"
+      },
+      {
+        id: 12,
+        name: "Mapping checklist",
+        folder: "5000_etl_execute\\bat",
+        batch: "03_mapping_checklist.bat",
+        desc: "マッピングチェックリストを出力します"
+      },
+      {
+        id: 13,
+        name: "ETL execution (final)",
+        folder: "5000_etl_execute\\bat",
+        batch: "04_etl_execution_to_final.bat",
+        desc: "ETL処理（OMOP形式変換）を実行します"
+      },
+      {
+        id: 14,
+        name: "Result checklist",
+        folder: "5000_etl_execute\\bat",
+        batch: "05_result_checklist.bat",
+        desc: "ETL実行結果チェックリストを実行します"
+      },
+      {
+        id: 15,
+        name: "Production deployment",
+        folder: "5000_etl_execute\\bat",
+        batch: "06_production_deployment.bat",
+        desc: "本番スキーマへのデプロイを行います"
+      },
+      {
+        id: 16,
+        name: "Statistics Analyze",
+        folder: "6000_statistics\\bat",
+        batch: "01_achilles_concept_hierarchy.bat;02_achilles_statistics.bat;03_achilles_concept_count.bat",
+        desc: "Achilles統計分析を実行します"
+      }
+    ];
+
+    var selected = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+
+    // ================================================================
+    // Initialize On Window Load
+    // ================================================================
+    window.onload = function() {
+      window.resizeTo(800, 1100);
+      try {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var shell = new ActiveXObject("WScript.Shell");
+        // Get ROOT_DIR from HTA file location itself (not from current working directory)
+        // location.pathname may contain encoded characters and path separators issues
+        // Use WScript.Shell to get reliable current directory
+        var htaFullPath = location.pathname;
+        // Remove leading slash if present (file:///C:/path becomes /C:/path)
+        if (htaFullPath.charAt(0) === '/') {
+          htaFullPath = htaFullPath.substring(1);
+        }
+        // Decode URI components to handle spaces and special characters (including Japanese)
+        htaFullPath = decodeURIComponent(htaFullPath);
+        ROOT_DIR = fso.GetParentFolderName(htaFullPath);
+      } catch (e) {
+        alert("エラー: " + e.message);
+      }
+      initUI();
+    };
+
+    // ================================================================
+    // Initialize UI - Build Step List
+    // ================================================================
+    function initUI() {
+      var html = '';
+      for (var i = 0; i < steps.length; i++) {
+        var s = steps[i];
+        var num = (s.id < 10) ? ('0' + s.id) : ('' + s.id);
+        html += '<div class="step" id="step' + i + '" onclick="toggleStep(' + i + ')">';
+        html += '<label for="check' + i + '"><strong>STEP ' + num + '</strong> ' + s.name + ' (' + s.desc + ')</label>';
+        html += '<input type="checkbox" id="check' + i + '">';
+        html += '</div>';
+      }
+      document.getElementById('stepsList').innerHTML = html;
+      // Initialize mode UI and command display
+      setTimeout(function() {
+        onModeChange();
+      }, 100);
+    }
+
+    // ================================================================
+    // Toggle Single Step Selection
+    // ================================================================
+    function toggleStep(i) {
+      selected[i] = !selected[i];
+      document.getElementById('check' + i).checked = selected[i];
+      var elem = document.getElementById('step' + i);
+      if (selected[i]) {
+        elem.className = 'step selected';
+      } else {
+        elem.className = 'step';
+      }
+      updateCommandDisplay();
+    }
+
+    // ================================================================
+    // Clear All Step Selections
+    // ================================================================
+    function clearAll() {
+      for (var i = 0; i < selected.length; i++) {
+        selected[i] = false;
+      }
+      updateUI();
+      updateCommandDisplay();
+    }
+
+    // ================================================================
+    // Update UI After Select All / Clear All
+    // ================================================================
+    function updateUI() {
+      for (var i = 0; i < selected.length; i++) {
+        document.getElementById('check' + i).checked = selected[i];
+        var elem = document.getElementById('step' + i);
+        if (selected[i]) {
+          elem.className = 'step selected';
+        } else {
+          elem.className = 'step';
+        }
+      }
+    }
+
+    // ================================================================
+    // Handle Execution Mode Change
+    // ================================================================
+    function onModeChange() {
+      var mode = getSelectedMode();
+      var startStepGroup = document.getElementById('startStepGroup');
+
+      // Show/hide start step input
+      if (mode === 'start') {
+        startStepGroup.className = 'start-step-section show';
+      } else {
+        startStepGroup.className = 'start-step-section';
+      }
+      
+      // Delay to ensure DOM state is updated
+      setTimeout(function() {
+        updateCommandDisplay();
+      }, 10);
+    }
+
+    // ================================================================
+    // Get Selected Execution Mode
+    // ================================================================
+    function getSelectedMode() {
+      var radios = document.getElementsByName('execMode');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return radios[i].value;
+        }
+      }
+      return 'start';
+    }
+
+    // ================================================================
+    // Get Skip ATHENA setting from radio buttons
+    // ================================================================
+    function getSkipAthena() {
+      var radios = document.getElementsByName('athenaMode');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          return radios[i].value === 'skip';
+        }
+      }
+      return false;
+    }
+
+    // ================================================================
+    // Update Command Display (real-time display)
+    // ================================================================
+    function updateCommandDisplay() {
+      var displayElem = document.getElementById('commandDisplay');
+      if (!displayElem) {
+        return;
+      }
+
+      var mode = getSelectedMode();
+      var skipAthena = getSkipAthena();
+
+      // Build base command
+      var cmd = 'call execute_all_process.bat';
+      var isValid = true;
+
+      // Build command based on mode
+      if (mode === 'select') {
+        // --select mode: collect selected steps
+        var count = 0;
+        var stepNumbers = [];
+        for (var i = 0; i < selected.length; i++) {
+          if (selected[i]) {
+            count++;
+            stepNumbers.push(steps[i].id);
+          }
+        }
+        if (count === 0) {
+          displayElem.innerHTML = '(最低1つのSTEPを選択してください)';
+          displayElem.style.color = '#999';
+          return;
+        }
+
+        var stepArgs = stepNumbers.join(':');
+        cmd += ' --select "' + stepArgs + '"';
+
+      } else if (mode === 'start') {
+        // --start mode: get selected STEP from card selection
+        var selectedStepNum = null;
+        var count = 0;
+        for (var i = 0; i < selected.length; i++) {
+          if (selected[i]) {
+            count++;
+            selectedStepNum = steps[i].id;
+          }
+        }
+        
+        if (count === 0) {
+          displayElem.innerHTML = '(STEPを選択してください)';
+          displayElem.style.color = '#999';
+          return;
+        }
+        
+        if (count > 1) {
+          displayElem.innerHTML = '(複数のSTEPが選択されています。1つだけ選択してください)';
+          displayElem.style.color = '#d32f2f';
+          return;
+        }
+
+        cmd += ' --start ' + selectedStepNum;
+      }
+
+      // Add skipathena flag if checked
+      if (skipAthena) {
+        cmd += ' --skipathena';
+      }
+
+      // Display command
+      displayElem.innerHTML = cmd;
+      displayElem.style.color = '#333';
+    }
+
+    // ================================================================
+    // Execute Selected Steps
+    // ================================================================
+    function runSteps() {
+      var mode = getSelectedMode();
+      var skipAthena = getSkipAthena();
+
+      // Build base command (without cd prefix for display)
+      var cmd = 'call "' + ROOT_DIR + '\\execute_all_process.bat"';
+
+      // Build command based on mode
+      if (mode === 'select') {
+        // --select mode: collect selected steps
+        var count = 0;
+        var stepNumbers = [];
+        for (var i = 0; i < selected.length; i++) {
+          if (selected[i]) {
+            count++;
+            stepNumbers.push(steps[i].id);
+          }
+        }
+        if (count === 0) {
+          alert('最低1つのSTEPを選択してください');
+          return;
+        }
+
+        var stepArgs = stepNumbers.join(':');
+        cmd += ' --select "' + stepArgs + '"';
+
+        // Add confirmation with selected steps
+        var stepList = stepNumbers.join(',');
+        if (!confirm('STEP ' + stepList + 'を実行しますか？')) {
+          return;
+        }
+
+      } else if (mode === 'start') {
+        // --start mode: get selected STEP from card selection only
+        var selectedStepNum = null;
+        var count = 0;
+        for (var i = 0; i < selected.length; i++) {
+          if (selected[i]) {
+            count++;
+            selectedStepNum = steps[i].id;
+          }
+        }
+        
+        if (count === 0) {
+          alert('1つのSTEPカードを選択してください');
+          return;
+        }
+        
+        if (count > 1) {
+          alert('開始STEPを指定して実行する場合は、複数のSTEPを選択することはできません。');
+          return;
+        }
+        
+        if (!confirm('STEP ' + selectedStepNum + ' から一括実行しますか？')) return;
+
+        cmd += ' --start ' + selectedStepNum;
+      }
+
+      // Add skipathena flag if checked
+      if (skipAthena) {
+        cmd += ' --skipathena';
+      }
+
+      // Build full command with execution
+      var fullCmd = 'cmd /c ' + cmd;
+
+      addLog('ROOT_DIR: ' + ROOT_DIR);
+      addLog('Mode: ' + mode);
+      addLog('Skip ATHENA: ' + skipAthena);
+      addLog('Starting execution via execute_all_process.bat...');
+      showLog();
+
+      var shell = new ActiveXObject("WScript.Shell");
+      addLog('Executing: ' + cmd);
+      addLog('');
+
+      try {
+        // Execute the batch file with appropriate arguments
+        var ex = shell.Run(fullCmd, 1, true);
+        if (ex !== 0) {
+          addLog('[ERROR] Batch file execution failed. Exit Code: ' + ex);
+        } else {
+          addLog('[OK] Batch execution completed successfully');
+        }
+      } catch (e) {
+        addLog('[ERROR] Exception: ' + e.message);
+      }
+
+      var d = new Date();
+      var h = d.getHours();
+      var m = d.getMinutes();
+      var sec = d.getSeconds();
+      var mStr = (m < 10) ? ('0' + m) : ('' + m);
+      var sStr = (sec < 10) ? ('0' + sec) : ('' + sec);
+      addLog('[' + h + ':' + mStr + ':' + sStr + '] Execution completed');
+    }
+
+    // ================================================================
+    // Log Modal Functions
+    // ================================================================
+    function showLog() {
+      document.getElementById('logModal').className = 'modal show';
+      document.getElementById('logContent').textContent = '';
+    }
+
+    function closeLog() {
+      document.getElementById('logModal').className = 'modal';
+    }
+
+    function addLog(msg) {
+      var logContent = document.getElementById('logContent');
+      logContent.textContent = logContent.textContent + msg + '\n';
+      logContent.scrollTop = logContent.scrollHeight;
+    }
+  </script>
+</body>
+</html>

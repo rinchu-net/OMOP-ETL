@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
+  <!-- Red circle background -->
+  <circle cx="24" cy="24" r="22" fill="#F44336" stroke="#C62828" stroke-width="2"/>
+  
+  <!-- Stop square symbol -->
+  <rect x="14" y="14" width="20" height="20" fill="white" rx="2"/>
+</svg>

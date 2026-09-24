@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
+  <!-- Green circle background -->
+  <circle cx="24" cy="24" r="22" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+  
+  <!-- Running indicator: right-pointing play arrow -->
+  <polygon points="16,12 16,36 36,24" fill="white"/>
+  
+  <!-- Motion lines to show movement -->
+  <line x1="8" y1="18" x2="12" y2="18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="6" y1="24" x2="10" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="8" y1="30" x2="12" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>

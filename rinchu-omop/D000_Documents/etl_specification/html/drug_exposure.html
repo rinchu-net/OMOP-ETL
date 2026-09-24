@@ -1,0 +1,366 @@
+<h2>Table name: drug_exposure</h2>
+
+<h3>Reading from injectiondata</h3>
+
+<p>ターゲットテーブル:drug_exposure
+<br>・当テーブルは主にPrescriptionDataとInjectionDataから作成する
+<br>
+<br>本項では、InjectionDataをもとに生成された、drug_exposureテーブルの各項目のとの出力結果の対応を記載する。
+<br>・concept変換元のソースコードはYJコードとし、臨中ネット様が作成予定のマッピングテーブルを介したstandard&nbsp;conceptへの変換を行う。</p>
+
+<img src="html_files/image12.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>drug_exposure_id</td>
+		<td></td>
+		<td></td>
+		<td>一意の連番を設定する</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>person.person_source_valueと結合してperson_idを取得・登録する<br></td>
+	</tr>
+	<tr>
+		<td>drug_concept_id</td>
+		<td>inj_medicine_cd_yj</td>
+		<td>route_concept_idに変換
+<br>Source_to_concept_map:
+<br>VocabID:RINCHU_DRUG
+<br>DomainID:Drug</td>
+		<td>YJコードをsource_to_concept_mapを介してRxNome他のStandard&nbsp;Vocabularyに変換する<br></td>
+	</tr>
+	<tr>
+		<td>drug_exposure_start_date</td>
+		<td>inj_start_date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>drug_exposure_start_datetime</td>
+		<td>inj_start_date<br>inj_start_time</td>
+		<td>CASE
+<br>&nbsp;&nbsp;WHEN&nbsp;inj_start_time&nbsp;=&nbsp;'999999'&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;inj_start_time&nbsp;IS&nbsp;NULL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;inj_start_time&nbsp;~&nbsp;'^[0-9]{6}$'&nbsp;=&nbsp;false
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(inj_start_time,&nbsp;1,&nbsp;2)::integer&nbsp;>=&nbsp;24
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(inj_start_time,&nbsp;3,&nbsp;2)::integer&nbsp;>=&nbsp;60&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(inj_start_time,&nbsp;5,&nbsp;2)::integer&nbsp;>=&nbsp;60&nbsp;
+<br>&nbsp;&nbsp;THEN&nbsp;TO_TIMESTAMP(inj_start_time&nbsp;||&nbsp;'000000','YYYYMMDDHH24MISS')::timestamp
+<br>&nbsp;&nbsp;ELSE&nbsp;TO_TIMESTAMP(inj_start_date&nbsp;||&nbsp;inj_start_time,'YYYYMMDDHH24MISS')::timestamp
+<br>END&nbsp;AS&nbsp;start_datetime<br></td>
+		<td>投薬開始日＋投薬開始時刻を登録する<br><br>（prescriptiondataが元テーブルの場合、設定しない）</td>
+	</tr>
+	<tr>
+		<td>drug_exposure_end_date</td>
+		<td>inj_end_date</td>
+		<td>COALESCE(NULLIF(sch_inj_end_date,&nbsp;'9999-12-31'::date),&nbsp;sch_inj_start_date)&nbsp;AS&nbsp;end_date</td>
+		<td>投薬終了日のデータがある場合投薬終了日、なければ投薬開始日を設定<br></td>
+	</tr>
+	<tr>
+		<td>drug_exposure_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>verbatim_end_date</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>drug_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817（EHR）固定とする</td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>refills</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>quantity</td>
+		<td>inj_administered_amount</td>
+		<td></td>
+		<td>投薬量をそのままセットする<br></td>
+	</tr>
+	<tr>
+		<td>days_supply</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>sig</td>
+		<td>inj_administration_notes<br>inj_administered_per<br>inj_indication</td>
+		<td>&nbsp;CASE
+<br>&nbsp;&nbsp;WHEN&nbsp;inj_administration_notes&nbsp;IS&nbsp;NULL&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;inj_administered_per&nbsp;IS&nbsp;NULL&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;inj_indication&nbsp;IS&nbsp;NULL&nbsp;
+<br>&nbsp;&nbsp;THEN&nbsp;NULL
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE&nbsp;COALESCE(inj_administration_notes,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(inj_administered_per,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(inj_indication,&nbsp;'')
+<br>END&nbsp;AS&nbsp;sig<br><br></td>
+		<td>以下の項目を連結してセットする
+<br>・投薬注記
+<br>・時間当たりの投薬
+<br>・指示<br><br><br></td>
+	</tr>
+	<tr>
+		<td>route_concept_id</td>
+		<td>inj_route</td>
+		<td>"Source_to_concept_map:
+<br>VocabID:RINCHU_DRUG_ROUTE
+<br>DomainID:Route"</td>
+		<td>投薬経路をsource_to_concept_mapを介してStandard&nbsp;Vocabularyに変換する<br></td>
+	</tr>
+	<tr>
+		<td>lot_number</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td>dept_cd_s</td>
+		<td></td>
+		<td>当該標準診療科コードを示すprovider_idを取得して登録する<br></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>drug_source_value</td>
+		<td>inj_medicine_cd_yj<br>inj_medicine_cd_hot<br>inj_medicine_name_l</td>
+		<td>COALESCE(inj_medicine_cd_yj,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(inj_medicine_cd_hot,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(inj_medicine_name_l,&nbsp;'')&nbsp;AS&nbsp;source_regvalue<br><br></td>
+		<td>YJコード|HOTコード|薬剤名称の形式に編集して判読可能な値として登録する<br><br><br></td>
+	</tr>
+	<tr>
+		<td>drug_source_concept_id</td>
+		<td>inj_medicine_cd_yj</td>
+		<td>route_concept_idに変換
+<br>Source_to_concept_map:
+<br>VocabID:RINCHU_DRUG
+<br>DomainID:Drug</td>
+		<td>source_to_concept_mapからYJコードのconcept_idを取得しセットする<br></td>
+	</tr>
+	<tr>
+		<td>route_source_value</td>
+		<td>inj_route</td>
+		<td></td>
+		<td>投与経路をそのままセットする<br></td>
+	</tr>
+	<tr>
+		<td>dose_unit_source_value</td>
+		<td>inj_dosage_unit_cd_s<br>inj_administered_unit_name_l</td>
+		<td>COALESCE(inj_dosage_unit_cd_s,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(inj_administered_unit_name_l,&nbsp;'')&nbsp;AS&nbsp;unit_source_regvalue<br></td>
+		<td>与薬単位標準コードと与薬単位名称を連結してセットする<br><br></td>
+	</tr>
+</table>
+
+<h3>Reading from prescriptiondata</h3>
+
+<p>本項では、PrescriptionDataをもとに生成された、drug_exposureテーブルの各項目のとの出力結果の対応を記載する。
+<br>・concept変換元のソースコードはYJコードとし、臨中ネット様が作成予定のマッピングテーブルを介したstandard&nbsp;conceptへの変換を行う。
+<br>・処方データに基づくquantity,&nbsp;unitには「与薬量」「調剤量」「1&nbsp;日あたりの総投与量」から「調剤量」にかかる項目を登録する
+<br>
+<br></p>
+
+<img src="html_files/image13.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>drug_exposure_id</td>
+		<td></td>
+		<td></td>
+		<td>一意の連番を設定する</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>person.person_source_valueと結合してperson_idを取得・登録する<br></td>
+	</tr>
+	<tr>
+		<td>drug_concept_id</td>
+		<td>pres_medicine_cd_yj</td>
+		<td>route_concept_idに変換
+<br>Source_to_concept_map:
+<br>VocabID:RINCHU_DRUG
+<br>DomainID:Drug</td>
+		<td>YJコードをsource_to_concept_mapを介してRxNome他のStandard&nbsp;Vocabularyに変換する<br></td>
+	</tr>
+	<tr>
+		<td>drug_exposure_start_date</td>
+		<td>sch_pres_start_date</td>
+		<td></td>
+		<td>投薬開始日をそのまま登録する<br></td>
+	</tr>
+	<tr>
+		<td>drug_exposure_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>（prescriptiondataが元テーブルの場合、設定しない）</td>
+	</tr>
+	<tr>
+		<td>drug_exposure_end_date</td>
+		<td>pres_period<br>sch_pres_start_date</td>
+		<td>CASE&nbsp;
+<br>&nbsp;&nbsp;WHEN&nbsp;pres_period&nbsp;IS&nbsp;NOT&nbsp;NULL&nbsp;AND&nbsp;pres_period&nbsp;>&nbsp;0&nbsp;THEN&nbsp;sch_pres_start_date&nbsp;+&nbsp;(pres_period&nbsp;-&nbsp;1)&nbsp;*&nbsp;INTERVAL&nbsp;'1&nbsp;day'
+<br>&nbsp;&nbsp;ELSE&nbsp;sch_pres_start_date&nbsp;
+<br>END&nbsp;AS&nbsp;end_date</td>
+		<td>投薬終了日が有効な日付の場合はそのまま登録する。有効な日付でない場合は投薬開始日に投与日数を加算して投薬終了日を導出する<br></td>
+	</tr>
+	<tr>
+		<td>drug_exposure_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>verbatim_end_date</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>drug_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817（EHR）固定とする</td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>refills</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>quantity</td>
+		<td>pres_dispense_amount</td>
+		<td></td>
+		<td>調剤量をそのままセットする<br></td>
+	</tr>
+	<tr>
+		<td>days_supply</td>
+		<td>pres_period</td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>sig</td>
+		<td>pres_administration_cd_s<br>pres_administration_name_s<br>pres_administration_name_l<br>pres_supplement_cd_s<br>pres_supplement_name_s<br>pres_supplement_name_l<br>pres_rp_comment<br>pres_instructions_name</td>
+		<td>COALESCE(pres_administration_cd_s,'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;
+<br>COALESCE(pres_administration_name_s,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||
+<br>COALESCE(pres_administration_name_l,&nbsp;'')&nbsp;||
+<br>COALESCE(pres_supplement_cd_s,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||
+<br>COALESCE(pres_supplement_name_s,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||
+<br>COALESCE(pres_supplement_name_l,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||
+<br>COALESCE(pres_rp_comment,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||
+<br>COALESCE(pres_instructions_name,&nbsp;'')&nbsp;AS&nbsp;sig<br><br><br><br><br><br><br></td>
+		<td>以下のカラムを連結する
+<br>・標準用法コード
+<br>・標準用法テキスト
+<br>・用法テキスト
+<br>・標準補足用法コード
+<br>・標準補足用法名称
+<br>・補足用法名称
+<br>・用法コメント
+<br>・依頼者の投薬指示コード
+<br>・依頼者の投薬指示内容<br><br><br><br><br><br><br><br></td>
+	</tr>
+	<tr>
+		<td>route_concept_id</td>
+		<td>pres_route</td>
+		<td>Source_to_concept_map:
+<br>VocabID:RINCHU_DRUG_ROUTE
+<br>DomainID:Route</td>
+		<td>投薬経路をsource_to_concept_mapを介してStandard&nbsp;Vocabularyに変換する<br></td>
+	</tr>
+	<tr>
+		<td>lot_number</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td>dept_cd_s</td>
+		<td></td>
+		<td>当該標準診療科コードを示すprovider_idを取得して登録する<br></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>drug_source_value</td>
+		<td>pres_medicine_cd_hot<br>pres_medicine_name_l<br>pres_medicine_cd_yj</td>
+		<td>COALESCE(pres_medicine_cd_yj,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(pres_medicine_cd_hot,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(pres_medicine_name_l,&nbsp;'')</td>
+		<td>HOTコード|薬剤名称の形式に編集して判読可能な値として登録する<br></td>
+	</tr>
+	<tr>
+		<td>drug_source_concept_id</td>
+		<td>pres_medicine_cd_yj</td>
+		<td></td>
+		<td>source_to_concept_mapからYJコードのsource_concept_idを取得しセットする<br></td>
+	</tr>
+	<tr>
+		<td>route_source_value</td>
+		<td>pres_route<br>pres_administration_type</td>
+		<td>&nbsp;COALESCE(pres_route,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(pres_administration_type,&nbsp;'')&nbsp;AS&nbsp;route_source_regvalue<br></td>
+		<td>投与経路|用法種別の形式に編集して判読可能な値として登録する<br><br></td>
+	</tr>
+	<tr>
+		<td>dose_unit_source_value</td>
+		<td>pres_dispense_unit_name_l<br>pres_total_unit_cd_s</td>
+		<td>COALESCE(pres_dispense_unit_cd_s,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(pres_dispense_unit_name_l,&nbsp;'')&nbsp;AS&nbsp;unit_source_regvalue<br></td>
+		<td>調剤料単位標準コードと調剤量単位名称を連結して登録する<br><br></td>
+	</tr>
+</table>
+

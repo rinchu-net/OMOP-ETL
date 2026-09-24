@@ -1,0 +1,610 @@
+<!DOCTYPE html><html><head>
+      <title>for_user</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\u1183214\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:///c:\Users\u1183214\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\mermaid\mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="利用者向けドキュメント受領取り込み起動動作確認">利用者向けドキュメント（受領〜取り込み〜起動・動作確認） </h1>
+<h2 id="はじめに">はじめに </h2>
+<h3 id="概要">概要 </h3>
+<p>本ドキュメントは、提供されたOHDSIツールセット（Docker版）を受領してから、ローカル環境で起動し、動作確認を行うまでの手順をまとめたものです。</p>
+<h3 id="対象読者">対象読者 </h3>
+<ul>
+<li>OHDSIツールを使用する解析担当者</li>
+<li>環境構築を行うシステム利用者</li>
+</ul>
+<h3 id="何ができるようになるか">何ができるようになるか </h3>
+<p>本手順を実施することで、お手元のPC（Windows/Mac/Linux）上でOHDSIツール群（Atlas, WebAPI等）をDockerコンテナとして稼働させ、ブラウザから利用可能な状態にすることができます。</p>
+<h2 id="1-前提条件">1. 前提条件 </h2>
+<h3 id="システム要件">システム要件 </h3>
+<ul>
+<li>メモリ: 16GB以上</li>
+<li>ディスク空き容量: 20GB以上</li>
+<li>OS: Windows 10/11, Windows Server 2022/2025, macOS, Linux</li>
+</ul>
+<h3 id="必要なソフトウェアのインストール">必要なソフトウェアのインストール </h3>
+<p>以下のいずれかのコンテナランタイムがインストールされ、起動している必要があります。</p>
+<ul>
+<li>Docker Desktop</li>
+<li>Rancher Desktop（Docker Desktopが有償ライセンス条件で利用出来ない場合の代替。dockerd モードで利用します）</li>
+</ul>
+<h2 id="2-手順の全体像">2. 手順の全体像 </h2>
+<p>:::mermaid</p>
+<div class="mermaid">flowchart TD
+    A[開始] --&gt; B[Docker環境のインストール]
+    B --&gt; C[受領ファイルの配置とロード]
+    C --&gt; D[設定ファイルの作成]
+    D --&gt; E[アプリケーションの起動]
+    E --&gt; F[ポータルページを開く]
+    F --&gt; G[アプリケーションの動作確認]
+    G --&gt; H[完了]
+    
+    style A fill:#90EE90,stroke:#2d5016,stroke-width:3px,color:#000
+    style H fill:#90EE90,stroke:#2d5016,stroke-width:3px,color:#000
+    style B fill:#4A90E2,stroke:#1a3a5c,stroke-width:2px,color:#fff
+    style C fill:#4A90E2,stroke:#1a3a5c,stroke-width:2px,color:#fff
+    style D fill:#4A90E2,stroke:#1a3a5c,stroke-width:2px,color:#fff
+    style E fill:#4A90E2,stroke:#1a3a5c,stroke-width:2px,color:#fff
+    style F fill:#4A90E2,stroke:#1a3a5c,stroke-width:2px,color:#fff
+    style G fill:#4A90E2,stroke:#1a3a5c,stroke-width:2px,color:#fff
+</div><p>:::</p>
+<ol>
+<li><strong>Docker環境のインストール</strong>: 前提となるDocker環境を準備します。</li>
+<li><strong>受領ファイルの配置とロード</strong>: 配布された資材を展開し、Dockerイメージをロードします。</li>
+<li><strong>設定ファイルの作成</strong>: 環境に合わせて <code>.env</code> ファイルを作成・編集します。</li>
+<li><strong>アプリケーションの起動</strong>: <code>controller_start.bat</code> を実行してコンテナを起動します。</li>
+<li><strong>ポータルページを開く</strong>: ブラウザでポータルページにアクセスしてブックマークします。</li>
+<li><strong>動作確認</strong>: 各サービスが正常に動作しているか確認します。</li>
+</ol>
+<h2 id="3-クイックスタート">3. クイックスタート </h2>
+<h3 id="31-docker環境のインストール">3.1 Docker環境のインストール </h3>
+<h4 id="1-dockerのインストール">1. Dockerのインストール </h4>
+<p>以下のいずれかをインストールしてください:</p>
+<ul>
+<li><strong>Docker Desktop</strong>: <a href="https://www.docker.com/products/docker-desktop">https://www.docker.com/products/docker-desktop</a></li>
+<li><strong>Rancher Desktop</strong>: <a href="https://rancherdesktop.io/">https://rancherdesktop.io/</a> （Docker Desktopの代替、dockerdモードで使用）
+<ul>
+<li>インストール時の設定:
+<ul>
+<li>Container Runtime: <strong>dockerd (moby)</strong> を選択</li>
+<li><strong>Kubernetes を無効化</strong>（Enable Kubernetesのチェックを外す）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-dockerの起動">2. Dockerの起動 </h4>
+<ul>
+<li>インストール後、Docker Desktop または Rancher Desktop を起動します</li>
+<li>タスクバー（Windows）またはメニューバー（Mac）にDockerのアイコンが表示され、「Running」状態になるまで待ちます</li>
+</ul>
+<h4 id="3-起動確認">3. 起動確認 </h4>
+<ol>
+<li><strong>ターミナルを開く</strong>:
+<ul>
+<li>Windows: スタートメニューから「cmd」または「PowerShell」を検索して起動</li>
+<li>Mac: Spotlight検索（⌘+Space）で「ターミナル」を起動</li>
+<li>Linux: 端末（Terminal）を起動</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[!TIP]<br>
+<strong>Windows環境（cmd.exe）での推奨設定</strong><br>
+ターミナルを開いた直後、以下のコマンドを実行してコードページをUTF-8に変更することを推奨します：</p>
+<pre data-role="codeBlock" data-info="cmd" class="language-cmd cmd"><code>chcp 65001
+</code></pre><p>これにより、日本語などの多バイト文字が正しく表示されます。PowerShellの場合はこの設定は不要です。</p>
+</blockquote>
+<ol start="2">
+<li>
+<p><strong>Dockerが動作しているか確認</strong>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">docker</span> <span class="token function">ps</span>
+</code></pre></li>
+<li>
+<p><strong>期待される結果</strong>:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</code></pre><p>上記のような表形式の出力が表示されればOKです（まだコンテナを起動していないため、ヘッダー行のみ表示されます）。</p>
+</li>
+<li>
+<p><strong>エラーが出た場合</strong>:</p>
+<ul>
+<li>「docker: command not found」または「'docker' は、内部コマンドまたは外部コマンド...」と表示される場合:
+<ul>
+<li>Docker Desktop/Rancher Desktopが正しくインストールされているか確認</li>
+<li>インストール後、ターミナルを再起動</li>
+</ul>
+</li>
+<li>「Cannot connect to the Docker daemon」と表示される場合:
+<ul>
+<li>Docker Desktop/Rancher Desktopが起動しているか確認</li>
+<li>アプリケーションの再起動を試してください</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="32-受領ファイルの配置とロード">3.2 受領ファイルの配置とロード </h3>
+<ol>
+<li>配布されたzipファイル等を解凍し、作業用フォルダに配置します。<br>
+以下の例では <code>C:\ohdsi_tools_docker</code> を作業用フォルダとしていますが、任意のパスに変更できます。</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># フォルダ構成例（&lt;作業用フォルダ&gt; は任意のパスに置き換えてください）</span>
+<span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span>/
+  ├── images/
+  │   ├── ohdsi-atlas.tar
+  │   ├── ohdsi-webapi.tar
+  │   ├── postgres.tar
+  │   └── load_images.bat
+  ├── postgres_data/
+  ├── docker-compose.yml
+  ├── .env.example
+  ├── .env <span class="token punctuation">(</span>このファイルは.env.exampleから作成します<span class="token punctuation">)</span>
+  ├── controller_start.bat
+  ├── controller_stop.bat
+  ├── controller_restart.bat
+  ├── portal/
+  │   └── portal.html
+  └── README.md
+</code></pre><ol start="2">
+<li>ターミナルで <code>images</code> フォルダに移動し、Dockerイメージをロードします。</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># Windows (cmd.exe) の場合</span>
+chcp <span class="token number">65001</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span><span class="token punctuation">\</span>images
+load_images.bat
+
+<span class="token comment"># PowerShell の場合</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span><span class="token punctuation">\</span>images
+.<span class="token punctuation">\</span>load_images.bat
+
+<span class="token comment"># Mac/Linux の場合</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span>/images
+./load_images.sh
+</code></pre><p>例: Windows (cmd.exe) の場合は <code>chcp 65001</code> 実行後、<code>cd C:\ohdsi_tools_docker\images</code> とした後、<code>load_images.bat</code> を実行</p>
+<h3 id="33-設定ファイルの作成">3.3 設定ファイルの作成 </h3>
+<p><code>.env.example</code> をコピーして <code>.env</code> という名前のファイルを作成します。<br>
+必要に応じて、<code>.env</code> 内のパスワードやポート設定を変更します。</p>
+<h3 id="34-アプリケーションの起動">3.4 アプリケーションの起動 </h3>
+<p>ターミナルで作業用フォルダに移動し、起動スクリプトを実行します。</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span>
+controller_start.bat
+</code></pre><p>例: <code>cd C:\ohdsi_tools_docker</code></p>
+<p>初回の起動にはコンテナの初期化が含まれるため、数分かかる場合があります。</p>
+<h3 id="35-ポータルページの開き方">3.5 ポータルページの開き方 </h3>
+<ol>
+<li>
+<p>すべてのコンテナが起動完了するまで待機します（ターミナルの出力を確認）。</p>
+</li>
+<li>
+<p>以下のいずれかの方法でポータルページを開きます。</p>
+<p><strong>方法1: エクスプローラーから開く（推奨）</strong></p>
+<ul>
+<li>エクスプローラーで <code>&lt;作業用フォルダ&gt;\portal\portal.html</code> を開いてダブルクリック</li>
+<li>例: <code>C:\ohdsi_tools_docker\portal\portal.html</code></li>
+</ul>
+<p><strong>方法2: ブラウザのアドレスバーに直接入力</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>file:///C:/ohdsi_tools_docker/portal/portal.html
+</code></pre><p>※スラッシュは <code>/</code> を使用し、作業用フォルダのパスに合わせて変更してください</p>
+</li>
+<li>
+<p>ポータルページが表示されたら、<strong>ブラウザのブックマーク機能でこのページをブックマークしてください</strong>。</p>
+<ul>
+<li>ブラウザのアドレスバーの右側のアイコンをクリック、または</li>
+<li>キーボードの <code>Ctrl+D</code> で追加できます</li>
+</ul>
+</li>
+</ol>
+<h4 id="ポータルページの機能">ポータルページの機能 </h4>
+<p>ポータルページは、OHDSIツール群の一元的なアクセスポイントとなり、以下の機能を提供します。</p>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>稼働状態の確認</strong></td>
+<td>各コンテナ・サービスの稼働状況をリアルタイムで表示します。アイコンやステータス表示で一目で稼働状況を確認できます</td>
+</tr>
+<tr>
+<td><strong>各ツールへのリンク</strong></td>
+<td>pgAdmin、WebAPI、Atlas、RStudio など各ツールへの直接リンクを提供し、ワンクリックでアクセスできます</td>
+</tr>
+<tr>
+<td><strong>ログイン情報の表示</strong></td>
+<td>各サービスのデフォルトユーザー名やパスワードが表示されており、すぐに利用可能です</td>
+</tr>
+<tr>
+<td><strong>トラブルシューティング</strong></td>
+<td>よくある問題と解決方法へのリンクが含まれています</td>
+</tr>
+<tr>
+<td><strong>ドキュメントへのアクセス</strong></td>
+<td>README やその他のドキュメントへのリンクから、詳細な情報にアクセスできます</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-各サービスの動作確認">4. 各サービスの動作確認 </h2>
+<h3 id="41-pgadminomopdb">4.1 pgAdmin/OMOPDB </h3>
+<ul>
+<li>URL: <code>http://localhost:15050/pgadmin</code></li>
+<li>ログイン: <code>admin@example.com</code> / <code>admin</code></li>
+<li>確認事項:
+<ul>
+<li>PostgreSQL に接続できること</li>
+<li>初期化スクリプト（<code>initdb01_roles.sql</code>, <code>initdb02_database.sql</code>）が実行されていること</li>
+<li>OMOPデータベースが作成されていること</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-webapi">4.2 WebAPI </h3>
+<ul>
+<li>URL: <code>http://localhost:18080/WebAPI/info</code></li>
+<li>確認事項: JSON形式のAPIレスポンスが返されること</li>
+</ul>
+<h3 id="43-atlas">4.3 Atlas </h3>
+<ul>
+<li>URL: <code>http://localhost:18081/atlas</code></li>
+<li>確認事項:
+<ul>
+<li>ページが表示されること</li>
+<li>初期状態ではデータソース未設定のため、エラーメッセージが表示される場合があります（正常な動作です）</li>
+</ul>
+</li>
+</ul>
+<h3 id="44-rstudiohades">4.4 RStudio/HADES </h3>
+<ul>
+<li>URL: <code>http://localhost:18787</code></li>
+<li>ログイン: <code>rstudio</code> / <code>rstudio</code></li>
+<li>確認事項:
+<ul>
+<li>ページが表示できること</li>
+<li>ログインできること</li>
+<li>フォルダリストに <code>hades_user</code> フォルダが表示されていること</li>
+<li>HADES ライブラリ確認: RStudio のコンソールで以下のコマンドを実行します<pre data-role="codeBlock" data-info="r" class="language-r r"><code>library<span class="token punctuation">(</span>Achilles<span class="token punctuation">)</span>
+</code></pre>ライブラリが正常にロードされればOKです。データベース未接続の状態では、後続の処理でエラーが出る可能性がありますが、この段階ではライブラリのインストール確認のみを目的としています。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-tips--tricks">5. Tips &amp; Tricks </h2>
+<h3 id="51-docker-desktopとrancher-desktopでのホスト名の違い">5.1 Docker DesktopとRancher Desktopでのホスト名の違い </h3>
+<p>ホストOS側のサービス（ローカルで動いているDBなど）にコンテナから接続する場合、ホスト名は以下のように指定します。</p>
+<ul>
+<li><strong>Docker Desktop</strong>: <code>host.docker.internal</code></li>
+<li><strong>Rancher Desktop</strong>: <code>host.rancher-desktop.internal</code> (またはIPアドレス)</li>
+</ul>
+<p>※環境やバージョンにより挙動が異なる場合があるため、接続できない場合はIPアドレス指定を試してください。</p>
+<h3 id="52-外部データベースへ接続先を変更">5.2 外部データベースへ接続先を変更 </h3>
+<p>WebAPIが参照するCDMデータベースを外部のPostgreSQL等に変更する場合は、以下の手順で設定を変更します。</p>
+<ol>
+<li><strong>設定ファイルの選択</strong>: セクション 5.4 を参照し、<code>application.properties.localdb</code> をベースに設定を行います</li>
+<li><strong>接続情報の編集</strong>: <code>webapi_setting/application.properties</code> で外部DBの接続情報（ホスト名、ポート、DB名、ユーザー、パスワード）を設定します</li>
+<li><strong>ネットワーク設定</strong>: 外部ネットワーク上のデータベースに接続する場合、<code>docker-compose.yml</code> でネットワーク設定の確認が必要です<pre data-role="codeBlock" data-info="yaml" class="language-yaml yaml"><code><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">webapi</span><span class="token punctuation">:</span>
+    <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> bridge  <span class="token comment"># または host</span>
+</code></pre></li>
+<li><strong>ファイアウォール</strong>: データベースサーバー側でコンテナからの接続を許可する必要があります</li>
+<li><strong>再起動</strong>: 設定変更後は <code>controller_restart.bat</code> でコンテナを再起動してください</li>
+</ol>
+<h3 id="53-各バッチファイルの説明">5.3 各バッチファイルの説明 </h3>
+<p>よく使うバッチファイルの説明は以下の通りです。</p>
+<ul>
+<li><code>controller_start.bat</code>: 全コンテナを起動します。</li>
+<li><code>controller_stop.bat</code>: 全コンテナを停止します。</li>
+<li><code>controller_restart.bat</code>: 全コンテナを再起動します。</li>
+<li><code>load_images.bat</code>: <code>images</code> フォルダ内のDockerイメージをロードします。</li>
+</ul>
+<h3 id="54-webapi-の-データベース接続先設定について">5.4 WebAPI の データベース接続先設定について </h3>
+<p>WebAPI コンテナの動作を制御する設定ファイルは <code>webapi_setting/application.properties</code> です。このファイルを編集することで、データベース接続やポート設定をカスタマイズできます。</p>
+<h4 id="設定ファイルのバリエーション">設定ファイルのバリエーション </h4>
+<p>プロジェクトには、異なるデータベース接続先に対応した複数の設定ファイルテンプレートが用意されています。</p>
+<table>
+<thead>
+<tr>
+<th>ファイル名</th>
+<th>データベースホスト</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>application.properties</code></td>
+<td><code>omopdb</code></td>
+<td>デフォルト設定（コンテナ内PostgreSQL）</td>
+</tr>
+<tr>
+<td><code>application.properties.containerdb</code></td>
+<td><code>omopdb</code></td>
+<td>docker-composeで起動しているPostgreSQLコンテナに接続（同一Dockerスタック内）</td>
+</tr>
+<tr>
+<td><code>application.properties.localdb</code></td>
+<td><code>host.docker.internal</code></td>
+<td>ホストOS上で直接動作しているPostgreSQLに接続（Dockerエンジンの外、同一PC上）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>各テンプレートの詳細:</strong></p>
+<ul>
+<li>
+<p><strong>containerdb</strong>: docker-compose.yml で定義されている <code>omopdb</code> コンテナ（PostgreSQL）に接続します。WebAPIコンテナと同じDockerネットワーク内で通信するため、コンテナ名で直接アクセスできます。</p>
+</li>
+<li>
+<p><strong>localdb</strong>: ホストOS（同一PC）上でDockerとは独立して動作しているPostgreSQLに接続します。<code>host.docker.internal</code> を使用してホストマシンにアクセスします。</p>
+</li>
+</ul>
+<p><strong>主な違い:</strong></p>
+<pre data-role="codeBlock" data-info="properties" class="language-properties properties"><code><span class="token comment"># containerdb の場合（同一Dockerスタック内のコンテナに接続）</span>
+<span class="token key attr-name">datasource.url</span><span class="token punctuation">=</span><span class="token value attr-value">jdbc:postgresql://omopdb:5432/OHDSI</span>
+
+<span class="token comment"># localdb の場合（ホストOS上のPostgreSQLに接続）</span>
+<span class="token key attr-name">datasource.url</span><span class="token punctuation">=</span><span class="token value attr-value">jdbc:postgresql://host.docker.internal:5432/OHDSI2</span>
+</code></pre><h4 id="主要な設定項目">主要な設定項目 </h4>
+<h5 id="データベース接続設定">データベース接続設定 </h5>
+<p><strong>Primary DataSource（メインデータソース）</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+<th>デフォルト例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>datasource.driverClassName</code></td>
+<td>JDBCドライバクラス</td>
+<td><code>org.postgresql.Driver</code></td>
+</tr>
+<tr>
+<td><code>datasource.url</code></td>
+<td>WebAPI用データベースの接続URL</td>
+<td><code>jdbc:postgresql://omopdb:5432/OHDSI</code></td>
+</tr>
+<tr>
+<td><code>datasource.username</code></td>
+<td>WebAPI用データベースのユーザー名</td>
+<td><code>ohdsi_app_user</code></td>
+</tr>
+<tr>
+<td><code>datasource.password</code></td>
+<td>WebAPI用データベースのパスワード</td>
+<td><code>app1</code></td>
+</tr>
+<tr>
+<td><code>datasource.dialect</code></td>
+<td>データベース種類</td>
+<td><code>postgresql</code></td>
+</tr>
+<tr>
+<td><code>datasource.ohdsi.schema</code></td>
+<td>WebAPIのスキーマ名</td>
+<td><code>webapi</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Flyway DataSource（データベースマイグレーション用）</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+<th>デフォルト例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flyway.enabled</code></td>
+<td>Flywayによるマイグレーションの有効化</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>flyway.datasource.driverClassName</code></td>
+<td>JDBCドライバクラス</td>
+<td><code>org.postgresql.Driver</code></td>
+</tr>
+<tr>
+<td><code>flyway.datasource.url</code></td>
+<td>データベースの接続URL</td>
+<td><code>jdbc:postgresql://omopdb:5432/OHDSI</code></td>
+</tr>
+<tr>
+<td><code>flyway.datasource.username</code></td>
+<td>管理者ユーザー名（DDL権限必要）</td>
+<td><code>ohdsi_admin_user</code></td>
+</tr>
+<tr>
+<td><code>flyway.datasource.password</code></td>
+<td>管理者パスワード</td>
+<td><code>admin1</code></td>
+</tr>
+<tr>
+<td><code>flyway.schemas</code></td>
+<td>管理対象スキーマ（大文字小文字区別）</td>
+<td><code>webapi</code></td>
+</tr>
+<tr>
+<td><code>flyway.locations</code></td>
+<td>マイグレーションスクリプトの場所</td>
+<td><code>classpath:db/migration/postgresql</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Security DataSource（セキュリティ用）</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+<th>デフォルト例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>security.db.datasource.url</code></td>
+<td>セキュリティ情報用データベースURL</td>
+<td><code>jdbc:postgresql://omopdb:5432/OHDSI</code></td>
+</tr>
+<tr>
+<td><code>security.db.datasource.username</code></td>
+<td>データベースユーザー名</td>
+<td><code>ohdsi_app_user</code></td>
+</tr>
+<tr>
+<td><code>security.db.datasource.password</code></td>
+<td>データベースパスワード</td>
+<td><code>app1</code></td>
+</tr>
+<tr>
+<td><code>security.db.datasource.schema</code></td>
+<td>セキュリティ用スキーマ名</td>
+<td><code>atlas_security</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>その他の重要設定</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>説明</th>
+<th>デフォルト例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server.port</code></td>
+<td>WebAPI が使用するポート</td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>server.context-path</code></td>
+<td>コンテキストパス</td>
+<td><code>/WebAPI</code></td>
+</tr>
+<tr>
+<td><code>source.name</code></td>
+<td>CDMデータソース名</td>
+<td><code>CDM_NAME</code></td>
+</tr>
+<tr>
+<td><code>cdm.version</code></td>
+<td>CDMバージョン</td>
+<td><code>5</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="設定ファイルの編集方法">設定ファイルの編集方法 </h4>
+<ol>
+<li>
+<p><strong>ファイルの位置</strong>:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>&lt;作業用フォルダ&gt;\webapi_setting\application.properties
+</code></pre><p>例: <code>C:\ohdsi_tools_docker\webapi_setting\application.properties</code></p>
+</li>
+<li>
+<p><strong>接続先の切り替え手順</strong>:</p>
+<p>テンプレートをコピーして使用します:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span><span class="token punctuation">\</span>webapi_setting
+
+<span class="token comment"># 外部DBに接続する場合</span>
+copy application.properties.localdb application.properties
+
+<span class="token comment"># コンテナ内DBに戻す場合</span>
+copy application.properties.containerdb application.properties
+</code></pre><p>例: <code>cd C:\ohdsi_tools_docker\webapi_setting</code></p>
+</li>
+<li>
+<p><strong>設定の編集と反映</strong>:</p>
+<ul>
+<li>テキストエディタで <code>application.properties</code> を開き、必要な項目を編集</li>
+<li>ファイルを保存後、コンテナを再起動:</li>
+</ul>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>作業用フォルダ<span class="token operator">&gt;</span>
+controller_restart.bat
+</code></pre><p>例: <code>cd C:\ohdsi_tools_docker</code></p>
+</li>
+</ol>
+<h4 id="注意事項">注意事項 </h4>
+<ul>
+<li>ファイルは UTF-8 エンコーディングで保存してください</li>
+<li>パスワードに特殊文字が含まれる場合はエスケープが必要な場合があります</li>
+<li><strong>Primary DataSource</strong> は通常のアプリケーション操作用です</li>
+<li><strong>Flyway DataSource</strong> はスキーマ変更やテーブル作成に使用されるため、DDL権限を持つユーザーが必要です</li>
+<li><strong>Security DataSource</strong> はユーザー認証情報の管理に使用されます</li>
+<li>3つのDataSourceは同じデータベースを指すことも、別々のデータベースを指すこともできます</li>
+<li>スキーマ名は大文字小文字を区別します（特に <code>flyway.schemas</code>）</li>
+<li><strong>テンプレートファイルは編集せず、<code>application.properties</code> を編集してください</strong></li>
+<li>設定変更後は必ずコンテナを再起動してください</li>
+<li>コンテナ再起動後、セクション 4.2 で WebAPI が正常に起動していることを確認してください</li>
+</ul>
+<p>設定変更後、WebAPI が正常に起動していることを確認してください。</p>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>

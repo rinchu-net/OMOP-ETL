@@ -1,0 +1,288 @@
+#BuildNumber Version property stub until migration to spring boot 2
+build.number=NA
+
+spring.profiles.active=default
+
+# Logging
+logging.level.org.springframework.web=info
+logging.level.org.hibernate=info
+logging.level.root=info
+logging.level.org.ohdsi=info
+logging.level.org.springframework.orm=info
+logging.level.org.springframework.jdbc=info
+logging.level.org.apache.shiro=warn
+
+#Primary DataSource
+datasource.driverClassName=org.postgresql.Driver
+datasource.url=jdbc:postgresql://host.rancher-desktop.internal:5432/OHDSI
+datasource.username=ohdsi_app_user
+datasource.password=app1
+datasource.dialect=postgresql
+datasource.ohdsi.schema=webapi
+datasource.dialect.source=sql server
+
+#CDM properties
+source.name=CDM_NAME
+cdm.version=5
+
+#R Service Host
+r.serviceHost=${r.serviceHost}
+
+#Flyway database change management.
+#DataSource for Change Managment / Migration
+flyway.enabled=true
+flyway.datasource.driverClassName=org.postgresql.Driver
+flyway.datasource.url=jdbc:postgresql://host.rancher-desktop.internal:5432/OHDSI
+flyway.datasource.username=ohdsi_admin_user
+flyway.datasource.password=admin1
+# check that migration scripts location exists
+flyway.check-location=true
+flyway.locations=classpath:db/migration/postgresql
+# locations of migrations scripts
+# schemas to manage/update (e.g. ohdsi/results schema) -NOTE: CASE SENSITIVE!
+flyway.schemas=webapi
+#Baseline - start flyway managment with existing objects
+flyway.baselineOnMigrate=true
+#Due to issue https://github.com/flyway/flyway/issues/752 use default baselineVersion=1 (Note equality to 1.0.0.0, so scripts with that version will be omitted)
+#flyway.baselineVersion=1.0.0.0
+flyway.validateOnMigrate=false
+# Enable out of order migrations due to distributed development nature of WebAPI
+flyway.outOfOrder=true
+# Flyway Placeholders:
+flyway.placeholders.ohdsiSchema=webapi
+
+#Disable any auto init
+#http://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
+spring.datasource.initialize=false
+#JPA / Spring Data
+spring.jpa.show-sql=false
+# JPA Default Schema
+spring.jpa.properties.hibernate.default_schema=webapi
+#JPA Dialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect
+spring.jpa.properties.hibernate.generate_statistics=false
+spring.jpa.properties.hibernate.jdbc.batch_size=200
+spring.jpa.properties.hibernate.order_inserts=true
+
+#Spring Cache
+spring.cache.jcache.config=classpath:appCache.xml
+spring.cache.type=jcache
+
+#JAX-RS
+jersey.resources.root.package=org.ohdsi.webapi
+
+#Spring boot auto starts jobs upon application start
+spring.batch.job.enabled=false
+#Disable auto init of spring batch tables
+spring.batch.initializer.enabled=false
+#Custom properties
+spring.batch.repository.tableprefix=webapi.BATCH_
+spring.batch.repository.isolationLevelForCreate=ISOLATION_READ_COMMITTED
+spring.batch.taskExecutor.corePoolSize=10
+spring.batch.taskExecutor.maxPoolSize=20
+spring.batch.taskExecutor.queueCapacity=2147483647
+spring.batch.taskExecutor.threadGroupName=
+spring.batch.taskExecutor.threadNamePrefix=
+
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server.port = 8080
+server.ssl.enabled = false
+server.ssl.key-store = 
+server.ssl.key-store-password = 
+server.ssl.key-password = 
+# the context path, defaults to '/'
+server.context-path=/WebAPI
+security.cas.loginUrl=
+security.cas.callbackUrl=
+security.cas.serverUrl=
+security.cas.cassvcs=
+security.cas.casticket=casticket
+# Full Text Search settings
+solr.endpoint = ${solr.endpoint}
+solr.query.prefix = ${solr.query.prefix}
+# Enabling Compression
+compression=on
+compressableMimeType=application/json,application/xml,text/html,text/xml,text/plain
+
+
+#Disabled to support Basic Auth and RESTful interface
+#http://docs.spring.io/spring-security/site/docs/3.2.x-SNAPSHOT/reference/html5/#when-to-use-csrf-protection
+csrf.disable=true
+
+sparql.endpoint=http://virtuoso.ohdsi.org:8890/sparql?default-graph-uri=&query=
+
+security.defaultGlobalReadPermissions=true
+security.provider=DisabledSecurity
+security.cors.enabled=true
+security.token.expiration=43200
+security.origin=*
+security.ssl.enabled=false
+security.oauth.callback.ui=http://localhost/Atlas/#/welcome
+security.oauth.callback.api=http://localhost:8080/WebAPI/user/oauth/callback
+security.oauth.callback.urlResolver=query
+security.oauth.google.apiKey=
+security.oauth.google.apiSecret=
+security.oauth.facebook.apiKey=
+security.oauth.facebook.apiSecret=
+security.oauth.github.apiKey=
+security.oauth.github.apiSecret=
+security.oid.clientId=
+security.oid.apiSecret=
+security.oid.url=
+security.oid.redirectUrl=http://localhost/index.html#/welcome/
+security.oid.logoutUrl=
+security.oid.extraScopes=
+security.oid.customParams={:}
+security.db.datasource.driverClassName=org.postgresql.Driver
+security.db.datasource.url=jdbc:postgresql://host.rancher-desktop.internal:5432/OHDSI
+security.db.datasource.username=ohdsi_app_user
+security.db.datasource.password=app1
+security.db.datasource.schema=atlas_security
+security.db.datasource.authenticationQuery=select password,firstName,middleName,lastName from atlas_security.users where username = ?
+security.ldap.dn=cn={0},dc=example,dc=org
+security.ldap.url=ldap://localhost:389
+security.ldap.baseDn=
+security.ldap.system.username=
+security.ldap.system.password=
+security.ldap.searchString=(&(objectClass=person)(CN={0}))
+security.ldap.searchBase=CN=Users,DC=example,DC=org
+security.ldap.userMapping.displaynameAttr=displayName
+security.ldap.userMapping.firstnameAttr=givenName
+security.ldap.userMapping.middlenameAttr=initials
+security.ldap.userMapping.lastnameAttr=sn
+security.ldap.userMapping.usernameAttr=cn
+security.ldap.userImport.usernameAttr=cn
+security.ldap.userImport.loginAttr=uid
+security.ad.url=ldap://localhost:389
+security.ad.searchBase=CN=Users,DC=example,DC=org
+security.ad.principalSuffix=@example.org
+security.ad.system.username=
+security.ad.system.password=
+security.ad.searchFilter=
+security.ad.searchString=(&(objectClass=person)(userPrincipalName=%s))
+security.ad.ignore.partial.result.exception=true
+security.ad.result.count.limit=30000
+security.ad.default.import.group=public
+security.ad.userMapping.displaynameAttr=displayname
+security.ad.userMapping.firstnameAttr=givenname
+security.ad.userMapping.middlenameAttr=initials
+security.ad.userMapping.lastnameAttr=sn
+security.ad.userMapping.usernameAttr=cn
+security.ad.userImport.usernameAttr=cn
+security.ad.userImport.loginAttr=sAMAccountName
+
+security.saml.enabled=false
+security.saml.entityId=
+security.saml.idpMetadataLocation=
+security.saml.keyManager.keyStoreFile=
+security.saml.keyManager.storePassword=
+security.saml.keyManager.defaultKey=
+security.saml.keyManager.passwords.arachnenetwork=
+security.saml.metadataLocation=
+security.saml.callbackUrl=
+security.saml.sloUrl=
+security.saml.maximumAuthenticationLifetime=60
+
+security.googleIap.cloudProjectId=
+security.googleIap.backendServiceId=
+security.google.accessToken.enabled=false
+
+security.kerberos.spn=
+security.kerberos.keytabPath=
+
+security.maxLoginAttempts=3
+security.duration.initial=10
+security.duration.increment=10
+
+security.auth.windows.enabled=true
+security.auth.kerberos.enabled=true
+security.auth.openid.enabled=true
+security.auth.facebook.enabled=true
+security.auth.github.enabled=true
+security.auth.google.enabled=true
+security.auth.jdbc.enabled=true
+security.auth.ldap.enabled=true
+security.auth.ad.enabled=true
+security.auth.cas.enabled=true
+
+#Execution engine
+executionengine.updateStatusCallback=http://localhost:8080/WebAPI/executionservice/callbacks/submission/{id}/status/update/{password}
+executionengine.resultCallback=http://localhost:8080/WebAPI/executionservice/callbacks/submission/{id}/result/{password}
+executionengine.url=https://localhost:8888/api/v1/analyze
+executionengine.token=Basic YWRtaW5Ab2R5c3NldXNpbmMuY29tOnBhc3N3b3Jk
+execution.invalidation.period=600000
+execution.invalidation.maxage.hours=12
+execution.status.period=10000
+executionengine.resultExclusions=
+
+#Hikari
+spring.datasource.hikari.connection-test-query=SELECT 1
+spring.datasource.hikari.connection-test-query-timeout=2000
+spring.datasource.hikari.maximum-pool-size=5
+spring.datasource.hikari.minimum-idle=1
+spring.datasource.hikari.connection-timeout=5000
+spring.datasource.hikari.register-mbeans=true
+spring.datasource.hikari.mbean-name=authDataSource
+
+person.viewDates=false
+
+#Heracles settings
+heracles.smallcellcount=5
+
+jasypt.encryptor.enabled=false
+jasypt.encryptor.password=
+jasypt.encryptor.algorithm=PBEWithMD5AndDES
+
+#Kerberos settings
+kerberos.timeout=60
+kerberos.configPath=/etc/krb5.conf
+kerberos.kinitPath=
+
+#Organization Settings
+organization.name=OHDSI
+
+#JdbcTemplate
+jdbc.suppressInvalidApiException=true
+
+#Sensitive info settings
+sensitiveinfo.admin.role=admin
+sensitiveinfo.moderator.role=Moderator
+sensitiveinfo.analysis.extensions=txt
+analysis.result.zipVolumeSizeMb=100
+
+#Cache Config
+cdm.result.cache.warming.enable=true
+cdm.cache.achilles.warming.enable=false
+cdm.cache.cron.warming.enable=false
+cdm.cache.cron.expression=0 0 2 * * *
+
+cache.generation.invalidAfterDays=30
+cache.generation.cleanupInterval=3600000
+cache.generation.useAsync=false
+cache.jobs.count=3
+
+# Achilles cache
+cache.achilles.usePersonCount=true
+
+#Atlas geo spatial
+atlasgis.enabled=false
+
+#I18n
+i18n.enabled=true
+i18n.defaultLocale=en
+
+#Tags
+tag.enabled=true
+tag.refreshStat.period=600000
+
+#Versioning
+versioning.maxAttempt=10
+
+#Audit trail
+audit.trail.enabled=false
+audit.trail.log.file=/tmp/atlas/audit/audit.log
+audit.trail.log.file.pattern=/tmp/atlas/audit/audit-%d{yyyy-MM-dd}-%i.log
+audit.trail.log.extraFile=/tmp/atlas/audit/audit-extra.log
+
+#Shiny
+shiny.enabled=false

@@ -1,0 +1,145 @@
+<h2>Table name: device_exposure</h2>
+
+<h3>Reading from patientdisease</h3>
+
+<p>ターゲットテーブル:device_exposure
+<br>・当テーブルは&nbsp;PatientDisease、ObservationResult、PrescriptionData、InjectionData&nbsp;からデータが登録される。
+<br>・各テーブルの&nbsp;病名、検査値、薬剤名などを&nbsp;ATHENA&nbsp;Vocabularyを介したstandard&nbsp;conceptへの変換後、standard&nbsp;conceptのdomainが&nbsp;"Device"&nbsp;で定義されているデータが格納される。
+<br>　例：「標準病名コード&nbsp;/&nbsp;20088828:義歯床下粘膜異常」&nbsp;→&nbsp;「OMOP&nbsp;コンセプト&nbsp;ID&nbsp;45767697&nbsp;/&nbsp;Physical&nbsp;therapy&nbsp;device」
+<br>　（注：本データソース側には該当のデータを格納しているエンティティが存在しない。このため各施設で発生したすべての機器/材料/器具などデータが登録されるわけではない。)
+<br>
+<br>本項では、PatientDiseaseをもとに生成された、device_exposureテーブルの各項目のとの出力結果の対応を記載する。
+<br></p>
+
+<img src="html_files/image15.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>device_exposure_id</td>
+		<td></td>
+		<td></td>
+		<td>一意の連番を設定する</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>person.person_source_valueと結合してperson_idを取得・登録する</td>
+	</tr>
+	<tr>
+		<td>device_concept_id</td>
+		<td>dis_management_cd</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>device_exposure_start_date</td>
+		<td>dis_start_date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>device_exposure_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>device_exposure_end_date</td>
+		<td>dis_end_date<br>dis_outcome_date</td>
+		<td>COALESCE(&nbsp;--&nbsp;OUTCOME_DATEを優先、なければEND_DATEを使用　ただし9999-12-31はNULLに変換する
+<br>&nbsp;&nbsp;NULLIF(sch_dis_outcome_date,&nbsp;'9999-12-31'::date),
+<br>&nbsp;&nbsp;NULLIF(sch_dis_end_date,&nbsp;'9999-12-31'::date)
+<br>)&nbsp;AS&nbsp;end_date<br></td>
+		<td>OUTCOME_DATEを優先、なければEND_DATEを使用　ただし9999-12-31はNULLに変換する<br><br></td>
+	</tr>
+	<tr>
+		<td>device_exposure_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>device_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817（EHR）固定とする</td>
+	</tr>
+	<tr>
+		<td>unique_device_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>production_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>quantity</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td>dept_cd_s</td>
+		<td></td>
+		<td>当該標準診療科コードを示すprovider_idを取得して登録する<br></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>device_source_value</td>
+		<td>icd10_cd<br>dis_management_cd<br>dis_name</td>
+		<td>COALESCE(icd10_cd,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(dis_management_cd,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(dis_name,&nbsp;'')<br><br></td>
+		<td>ICD10コード|病名管理番号|病名表記の形式に編集して判読可能な値として登録する<br><br><br></td>
+	</tr>
+	<tr>
+		<td>device_source_concept_id</td>
+		<td>icd10_cd</td>
+		<td>Source_to_concept_map:
+<br>VocabID:RINCHU_DIAGCD,&nbsp;ATHENA_ICD10
+<br>DomainID:Device
+<br></td>
+		<td>ICD10コードをAthenaのconceptを介してconcept_idに変換する
+<br><br></td>
+	</tr>
+	<tr>
+		<td>unit_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>unit_source_value</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>unit_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+</table>
+

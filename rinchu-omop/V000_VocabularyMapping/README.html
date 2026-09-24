@@ -1,0 +1,449 @@
+<!DOCTYPE html><html><head>
+      <title>README</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\u1183214\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.22\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="vocabularymapping支援ツール-操作マニュアル">VocabularyMapping支援ツール 操作マニュアル </h1>
+<p>バージョン: v1.01</p>
+<hr>
+<h2 id="1-ツール概要">1. ツール概要 </h2>
+<h3 id="作成の背景">作成の背景 </h3>
+<p>OMOP CDM の <code>source_to_concept_map</code>（STCM）を作成する際、STCM 形式の Excel シートに <code>target_concept_id</code> 等を入力しただけでは、マッピング先の concept の内容を目視で確認することができません。内容を確認できなければ、マッピングが正しく行われたかどうかを検証することもできません。</p>
+<p>また、STCM を新規作成するときだけでなく、<strong>すでに作成済みの STCM の内容を理解・検証する場面</strong>においても、concept の詳細情報を人が読める形で参照できる資料が必要です。</p>
+<p>このツールは、以下の 2 つの目的のために作成されました。</p>
+<ol>
+<li><strong>STCM 作成支援</strong> — 最低限の情報を入力するだけで、マッピング先 concept の詳細情報を自動補完し、内容を目視確認しながら正確なマッピング作業を行えるようにする</li>
+<li><strong>STCM の理解・検証支援</strong> — 作成済みの STCM に対して concept 情報を付与し、内容を可読な形で確認・検証できるようにする</li>
+</ol>
+<hr>
+<h3 id="前提条件">前提条件 </h3>
+<blockquote>
+<p><strong>⚠️ 本ツールを使用するには、PostgreSQL データベースに <a href="https://athena.ohdsi.org/">ATHENA</a> からダウンロードした OMOP Vocabulary（<code>concept</code> テーブル等）が登録済みであることが必須です。</strong></p>
+<p>ATHENA Vocabulary が未登録の場合、concept 情報の検索・補完機能は一切動作しません。<br>
+Vocabulary のダウンロードおよびデータベースへのロードは、本ツールとは別に事前に完了させておいてください。</p>
+</blockquote>
+<hr>
+<h3 id="実装機能omop-ツール-メニュー">実装機能（OMOP ツール メニュー） </h3>
+<p>本ツールのブックを開くと、Excel のリボン <strong>「アドイン」タブ</strong> に <strong>「OMOP ツール」</strong> メニューが自動的に追加されます。ブックを閉じると同時にメニューも削除されます。</p>
+<p><img src="Addin.png" alt="OMOP ツール メニュー"></p>
+<h4 id="1-concept情報を補完">1) Concept情報を補完 </h4>
+<p>ユーザーが最低限の情報（<code>source_code</code>、<code>target_concept_id</code> 等）を入力するだけで、STCM に必要なカラムを自動補完するとともに、マッピング先 concept の名称・domain・vocabulary 等の詳細情報をシート上に可視化します。</p>
+<h4 id="2-concept情報を補完翻訳付き">2) Concept情報を補完（翻訳付き） </h4>
+<p>concept の内容をより理解しやすくするために、<code>concept_name</code> の日本語訳を <code>concept_name_jp</code> 列に自動入力します。Excel の TRANSLATE 関数を使用した機械翻訳であるため、<strong>翻訳精度および動作は利用環境に依存します。</strong></p>
+<h4 id="3-csvにエクスポート">3) CSVにエクスポート </h4>
+<p>STCM テーブルにそのままインポートできる形式（UTF-8 CSV）のファイルを簡単に出力します。出力列・フォーマットは STCM の仕様に合わせて固定されています。</p>
+<hr>
+<h2 id="クイックスタート">クイックスタート </h2>
+<p>初めてこのツールを使う場合は、以下の手順で作業を進めてください。</p>
+<h3 id="ステップ-1--db-接続設定">ステップ 1 — DB 接続設定 </h3>
+<blockquote>
+<p><strong>前提:</strong> PostgreSQL データベースに ATHENA Vocabulary が登録済みであることを確認してください。</p>
+</blockquote>
+<p><code>settings</code> シートの C 列に、ATHENA Vocabulary が登録されている PostgreSQL データベースへの接続情報を設定します（詳細は「2. 事前準備」参照）。</p>
+<h3 id="ステップ-2--作業シートの作成">ステップ 2 — 作業シートの作成 </h3>
+<p><code>format</code> シートをコピーして、作成する STCM ごとの作業シートを作成します。シート名はマッピング対象がわかる名称にしてください。</p>
+<h3 id="ステップ-3--最低限の項目を入力">ステップ 3 — 最低限の項目を入力 </h3>
+<p>作業シートの 4 行目以降に、以下の入力列（A 列〜E 列）を記入します。</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>列名</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><code>source_code</code></td>
+<td>マッピング元のコード</td>
+</tr>
+<tr>
+<td>B</td>
+<td><code>source_concept_id</code></td>
+<td>不明な場合は空欄で可（0 に自動補完）</td>
+</tr>
+<tr>
+<td>C</td>
+<td><code>source_vocabulary_id</code></td>
+<td>ソースボキャブラリ ID</td>
+</tr>
+<tr>
+<td>D</td>
+<td><code>source_code_description</code></td>
+<td>ソースコードの説明（任意）</td>
+</tr>
+<tr>
+<td>E</td>
+<td><code>target_concept_id</code></td>
+<td>Athena 等で調べたマッピング先の concept ID</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ステップ-4--concept情報を補完">ステップ 4 — Concept情報を補完 </h3>
+<p>メニュー <strong>「OMOP ツール」→「Concept情報を補完」</strong> を実行します。<br>
+マッピング先 concept の詳細情報がシートに自動入力されます。内容を目視で確認しながら、必要に応じて <code>target_concept_id</code> を修正・洗練させてください。繰り返し実行することで精度を上げられます。</p>
+<h3 id="ステップ-5--csv-にエクスポート">ステップ 5 — CSV にエクスポート </h3>
+<p>マッピング内容が確定したら、メニュー <strong>「OMOP ツール」→「CSV にエクスポート」</strong> を実行します。<br>
+STCM テーブルへのインポート用 CSV ファイルが生成されます。</p>
+<hr>
+<h2 id="2-事前準備settingsシートの設定">2. 事前準備（settingsシートの設定） </h2>
+<p><code>settings</code> シートの C 列に以下の DB 接続情報を設定してください。</p>
+<table>
+<thead>
+<tr>
+<th>セル</th>
+<th>項目</th>
+<th>設定例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C2</td>
+<td>ホスト名（host）</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>ポート番号（port）</td>
+<td>5432</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>ユーザー名（uid）</td>
+<td>postgres</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>パスワード（pwd）</td>
+<td>（任意）</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>データベース名（dbname）</td>
+<td>omop_db</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>スキーマ名（schemaName）</td>
+<td>cdm</td>
+</tr>
+<tr>
+<td>C8</td>
+<td>concept テーブル名（conceptTable）</td>
+<td>concept</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意:</strong> ODBC ドライバが事前にインストールされている必要があります。<br>
+対応ドライバ: PostgreSQL Unicode / SQL Server / MySQL（自動検出・順に試行）</p>
+</blockquote>
+<hr>
+<h2 id="3-マッピングシートの構成">3. マッピングシートの構成 </h2>
+<h3 id="行の役割">行の役割 </h3>
+<table>
+<thead>
+<tr>
+<th>行番号</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1行目</td>
+<td>タイトル行（任意）</td>
+</tr>
+<tr>
+<td>2行目</td>
+<td>データ型定義行（CSV出力時に使用: <code>文字型</code> / <code>数値型</code> / <code>日付型</code>）</td>
+</tr>
+<tr>
+<td>3行目</td>
+<td>ヘッダー行（列名を記載）</td>
+</tr>
+<tr>
+<td>4行目以降</td>
+<td>データ行（<code>source_code</code> が空の行で処理終了）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="入力列ユーザーが記入">入力列（ユーザーが記入） </h3>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source_code</code></td>
+<td>マッピング元のコード（<strong>必須</strong>・空行で処理終了）</td>
+</tr>
+<tr>
+<td><code>source_concept_id</code></td>
+<td>ソース concept の ID（空欄の場合は <code>0</code> で自動補完）</td>
+</tr>
+<tr>
+<td><code>source_vocabulary_id</code></td>
+<td>ソースボキャブラリ ID（<strong>必須</strong>）</td>
+</tr>
+<tr>
+<td><code>source_code_description</code></td>
+<td>ソースコードの説明（任意）</td>
+</tr>
+<tr>
+<td><code>target_concept_id</code></td>
+<td>マッピング先の concept ID（<code>0</code> または空で Warning）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="自動補完列マクロが入力-target_concept_id-参照">自動補完列（マクロが入力）— target_concept_id 参照 </h3>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>target_vocabulary_id</code></td>
+<td>target_concept_id の vocabulary_id</td>
+</tr>
+<tr>
+<td><code>valid_start_date</code></td>
+<td>target_concept_id の有効開始日</td>
+</tr>
+<tr>
+<td><code>valid_end_date</code></td>
+<td>target_concept_id の有効終了日</td>
+</tr>
+<tr>
+<td><code>invalid_reason</code></td>
+<td>target_concept_id の無効理由</td>
+</tr>
+<tr>
+<td><code>concept_id</code></td>
+<td>target_concept_id の concept_id（確認用）</td>
+</tr>
+<tr>
+<td><code>concept_name</code></td>
+<td>target_concept_id の英語名称</td>
+</tr>
+<tr>
+<td><code>concept_name_jp</code></td>
+<td>concept_name の日本語訳（翻訳付き補完時のみ入力）</td>
+</tr>
+<tr>
+<td><code>concept_vocabulary_id</code></td>
+<td>target_concept_id の vocabulary_id</td>
+</tr>
+<tr>
+<td><code>concept_domain_id</code></td>
+<td>target_concept_id の domain_id</td>
+</tr>
+<tr>
+<td><code>concept_class_id</code></td>
+<td>target_concept_id の concept_class_id</td>
+</tr>
+<tr>
+<td><code>standard_concept</code></td>
+<td><code>S</code>=標準概念、空=非標準（<code>[W]non-standard concept</code> の対象）</td>
+</tr>
+<tr>
+<td><code>concept_valid_start_date</code></td>
+<td>concept テーブルの有効開始日</td>
+</tr>
+<tr>
+<td><code>concept_valid_end_date</code></td>
+<td>concept テーブルの有効終了日</td>
+</tr>
+<tr>
+<td><code>concept_invalid_reason</code></td>
+<td>concept テーブルの無効理由</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="自動補完列マクロが入力-source_concept_id-参照">自動補完列（マクロが入力）— source_concept_id 参照 </h3>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source_concept_id</code>（2列目）</td>
+<td>source_concept_id の concept_id（確認用）</td>
+</tr>
+<tr>
+<td><code>source_concept_name</code></td>
+<td>source_concept_id の concept 名</td>
+</tr>
+<tr>
+<td><code>source_concept_vocabulary_id</code></td>
+<td>source_concept_id の vocabulary_id</td>
+</tr>
+<tr>
+<td><code>source_concept_domain_id</code></td>
+<td>source_concept_id の domain_id</td>
+</tr>
+<tr>
+<td><code>source_concept_class_id</code></td>
+<td>source_concept_id の concept_class_id</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="チェック結果列">チェック結果列 </h3>
+<p>補完実行後、各行の処理結果が <code>Error</code> 列に記録されます。正常時は空白です。</p>
+<table>
+<thead>
+<tr>
+<th>プレフィックス</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>（空白）</td>
+<td>正常にマッピングされた</td>
+</tr>
+<tr>
+<td><code>[W]</code></td>
+<td>Warning — 処理は続行されるが確認・修正を推奨</td>
+</tr>
+<tr>
+<td><code>[E]</code></td>
+<td>Error — 必須情報が不足しているため対処が必要</td>
+</tr>
+</tbody>
+</table>
+<p><strong>メッセージ一覧:</strong></p>
+<table>
+<thead>
+<tr>
+<th>メッセージ</th>
+<th>意味</th>
+<th>対処方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[W]target_concept_id未設定</code></td>
+<td>target_concept_id が空または <code>0</code></td>
+<td>target_vocabulary_id=None、日付はデフォルト値（1970-01-01 〜 2099-12-31）で補完される。マッピング先 ID を設定する</td>
+</tr>
+<tr>
+<td><code>[W]non-standard concept</code></td>
+<td>standard_concept が空（非標準概念）</td>
+<td>OMOP CDM では標準概念へのマッピングが推奨。Athena 等で標準概念の ID を確認する</td>
+</tr>
+<tr>
+<td><code>[E]conceptテーブルに存在しないid</code></td>
+<td>指定した target_concept_id が DB に存在しない</td>
+<td>concept ID を確認し、正しい ID に修正する</td>
+</tr>
+<tr>
+<td><code>[E]source_vocabulary_idが未設定</code></td>
+<td>source_vocabulary_id が空欄</td>
+<td>source_vocabulary_id を必ず入力する</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="4-操作手順">4. 操作手順 </h2>
+<p>Excel メニューバーの <strong>「OMOP ツール」</strong> から各機能を実行します。</p>
+<hr>
+<h3 id="concept情報を補完">Concept情報を補完 </h3>
+<p><code>target_concept_id</code> を DB の concept テーブルで検索し、関連情報を自動入力します。</p>
+<ul>
+<li><code>source_concept_id</code> が <code>0</code> より大きい場合は、そのconcept情報も補完します</li>
+<li><code>concept_name_jp</code> 列は空白のままになります</li>
+<li>実行前に <code>target_vocabulary_id</code> 列以降の既存データはすべてクリアされます</li>
+</ul>
+<hr>
+<h3 id="concept情報を補完翻訳付き">Concept情報を補完（翻訳付き） </h3>
+<p>上記と同じ処理に加え、<code>concept_name_jp</code> 列に Excel の TRANSLATE 関数を自動入力します。</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>=TRANSLATE(&lt;concept_name のセル&gt;, "en", "ja")
+</code></pre><blockquote>
+<p><strong>注意:</strong> Microsoft 365 の TRANSLATE 関数が使用できるバージョンが必要です。</p>
+</blockquote>
+<hr>
+<h3 id="csv-にエクスポート">CSV にエクスポート </h3>
+<p>シートのデータを UTF-8（BOM付き）CSV として保存します。</p>
+<p><strong>出力列（固定）:</strong></p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>source_code, source_concept_id, source_vocabulary_id, source_code_description,
+target_concept_id, target_vocabulary_id, valid_start_date, valid_end_date, invalid_reason
+</code></pre><p><strong>フォーマットルール（2行目のデータ型定義に従う）:</strong></p>
+<table>
+<thead>
+<tr>
+<th>データ型</th>
+<th>出力形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字型</td>
+<td>ダブルクォート囲み（内部の <code>"</code> は <code>""</code> にエスケープ）</td>
+</tr>
+<tr>
+<td>日付型</td>
+<td><code>yyyy-mm-dd</code> 形式</td>
+</tr>
+<tr>
+<td>数値型</td>
+<td>そのまま出力</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-注意事項">5. 注意事項 </h2>
+<ul>
+<li><strong>ODBCドライバ:</strong> PostgreSQL Unicode 等の ODBC ドライバが事前にインストールされている必要があります</li>
+<li><strong>OneDrive制約:</strong> CSV エクスポート時、OneDrive のクラウドフォルダ（<code>https://...</code> のパス）には保存できません。ローカルフォルダを指定してください</li>
+<li><strong>データクリア:</strong> 補完実行時、<code>target_vocabulary_id</code> 列以降の既存データはすべてクリアされます（<code>source_code</code> / <code>source_concept_id</code> 等の入力列は保持されます）</li>
+<li><strong>空行禁止:</strong> <code>source_code</code> が空の行でデータ処理が終了します。データの途中に空行を入れないでください</li>
+<li><strong>TRANSLATE関数:</strong> 翻訳付き補完は Microsoft 365 の TRANSLATE 関数が必要です（旧バージョンの Excel では動作しません）</li>
+<li><strong>source_concept補完列:</strong> <code>source_concept_name</code> 等の補完列がシートに存在しない場合、source_concept_id の補完処理はスキップされます</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

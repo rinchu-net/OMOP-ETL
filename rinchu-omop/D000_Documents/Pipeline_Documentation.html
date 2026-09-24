@@ -1,0 +1,320 @@
+<!DOCTYPE html><html><head>
+      <title>Pipeline_Documentation</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\u1183214\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      <script type="text/javascript" src="file:///c:\Users\u1183214\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.20\crossnote\dependencies\mermaid\mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="etlパイプライン説明">ETLパイプライン説明 </h1>
+<h2 id="概要">概要 </h2>
+<p>RINCHU プロジェクトのETL（Extract, Transform, Load）処理は、以下の3つのメインスクリプトで段階的に実行されます：</p>
+<ol>
+<li><strong><code>01_etl_execution_to_stem.sql</code></strong>: 生データからステージングテーブル（stem_source）への変換</li>
+<li><strong><code>03_etl_execution_to_final.sql</code></strong>: ステージングテーブルからOMOP CDM最終形式への変換とEraテーブルの集計</li>
+<li><strong><code>05_production_deployment_master.sql</code> / <code>05_production_deployment_data.sql</code></strong>: 検証済みデータのProduction環境への移行</li>
+</ol>
+<p>これらのスクリプトは、生データから OMOP CDM（Observational Medical Outcomes Partnership Common Data Model）形式への変換を段階的に実行します。</p>
+<h2 id="etl処理フロー">ETL処理フロー </h2>
+<h3 id="1-person-ステージング処理">1. Person ステージング処理 </h3>
+<p>患者情報の変換と正規化を実行します。</p>
+<div class="mermaid">graph TD
+    A[PatientIdentification] --&gt; B[person_s]
+    B --&gt; C[person_m]
+    C --&gt; D[person_f]
+    C --&gt; E[person_e]
+</div><ul>
+<li><strong>person_s</strong>: 生データから抽出した患者情報（Source）</li>
+<li><strong>person_m</strong>: 変換・マッピングされた患者情報（Mapped）</li>
+<li><strong>person_f</strong>: 最終確定された患者情報（Finalized）</li>
+<li><strong>person_e</strong>: エラーレコード（Error）</li>
+</ul>
+<h3 id="2-visit-occurrence-ステージング処理">2. Visit Occurrence ステージング処理 </h3>
+<p>受診情報の変換を実行します。</p>
+<div class="mermaid">graph TD
+    A[PatientVisit] --&gt; B[visit_occurrence_s]
+    B --&gt; C[visit_occurrence_m]
+    C --&gt; D[visit_occurrence_f]
+    C --&gt; E[visit_occurrence_e]
+    C --&gt; F[visit_detail_f]
+</div><ul>
+<li><strong>visit_detail_f</strong>: 詳細な受診情報も同時に生成</li>
+</ul>
+<h3 id="3-death-ステージング処理">3. Death ステージング処理 </h3>
+<p>死亡情報の変換を実行します。</p>
+<div class="mermaid">graph TD
+    A[PatientVisit] --&gt; B[death_s]
+    B --&gt; C[death_m]
+    C --&gt; D[death_f]
+    C --&gt; E[death_e]
+</div><h3 id="4-共通ステージング処理-stem_source">4. 共通ステージング処理 (stem_source) </h3>
+<p>複数のソーステーブルを統一フォーマット（stem_source）に変換します。</p>
+<div class="mermaid">graph TD
+    A[PatientDisease] --&gt; E[stem_source]
+    B[ObservationResult&lt;br/&gt;Measurement] --&gt; E
+    C[ObservationResult&lt;br/&gt;Specimen] --&gt; E
+    D[PrescriptionData] --&gt; E
+    F[InjectionData] --&gt; E
+</div><p><strong>変換対象:</strong></p>
+<ul>
+<li><strong>PatientDisease</strong> → 診断情報</li>
+<li><strong>ObservationResult (Measurement)</strong> → 検査・測定値</li>
+<li><strong>ObservationResult (Specimen)</strong> → 検体情報</li>
+<li><strong>PrescriptionData</strong> → 処方薬情報</li>
+<li><strong>InjectionData</strong> → 注射薬情報</li>
+</ul>
+<h3 id="5-ドメイン別ステージング処理">5. ドメイン別ステージング処理 </h3>
+<p>共通形式（stem_source）から各OMOP CDMドメインテーブルに変換します。</p>
+<h4 id="51-condition-occurrence診断">5.1 Condition Occurrence（診断） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Condition] --&gt; B[condition_occurrence_m]
+    B --&gt; C[condition_occurrence_f]
+    B --&gt; D[condition_occurrence_e]
+</div><h4 id="52-drug-exposure薬剤投与">5.2 Drug Exposure（薬剤投与） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Drug] --&gt; B[drug_exposure_m]
+    B --&gt; C[drug_exposure_f]
+    B --&gt; D[drug_exposure_e]
+</div><h4 id="53-device-exposure医療機器">5.3 Device Exposure（医療機器） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Device] --&gt; B[device_exposure_m]
+    B --&gt; C[device_exposure_f]
+    B --&gt; D[device_exposure_e]
+</div><h4 id="54-measurement測定値">5.4 Measurement（測定値） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Measurement] --&gt; B[measurement_m]
+    B --&gt; C[measurement_f]
+    B --&gt; D[measurement_e]
+</div><h4 id="55-observation観察">5.5 Observation（観察） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Observation] --&gt; B[observation_m]
+    B --&gt; C[observation_f]
+    B --&gt; D[observation_e]
+</div><h4 id="56-procedure-occurrence処置">5.6 Procedure Occurrence（処置） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Procedure] --&gt; B[procedure_occurrence_m]
+    B --&gt; C[procedure_occurrence_f]
+    B --&gt; D[procedure_occurrence_e]
+</div><h4 id="57-specimen検体">5.7 Specimen（検体） </h4>
+<div class="mermaid">graph TD
+    A[stem_source&lt;br/&gt;Specimen] --&gt; B[specimen_m]
+    B --&gt; C[specimen_f]
+    B --&gt; D[specimen_e]
+</div><h4 id="58-observation-period観察期間">5.8 Observation Period（観察期間） </h4>
+<div class="mermaid">graph TD
+    A[person_f&lt;br/&gt;visit_occurrence_f] --&gt; B[observation_period_f]
+</div><h4 id="59-condition-era診断期間">5.9 Condition Era（診断期間） </h4>
+<div class="mermaid">graph TD
+    A[condition_occurrence_f] --&gt; B[condition_era_f]
+</div><h4 id="510-drug-era薬剤投与期間">5.10 Drug Era（薬剤投与期間） </h4>
+<div class="mermaid">graph TD
+    A[drug_exposure_f] --&gt; B[drug_era_f]
+</div><h4 id="511-dose-era用量期間">5.11 Dose Era（用量期間） </h4>
+<div class="mermaid">graph TD
+    A[drug_exposure_f] --&gt; B[dose_era_f]
+</div><h3 id="6-production環境への移行">6. Production環境への移行 </h3>
+<p>Workingスキーマから本番環境（Production）への最終データ移行を実行します。<br>
+この処理は2つのSQLファイルで構成されています：</p>
+<h4 id="61-マスタデータの移行05_production_deployment_mastersql">6.1 マスタデータの移行（05_production_deployment_master.sql） </h4>
+<div class="mermaid">graph TD
+    A[working.v_location_p] --&gt; B[production.location]
+    C[working.v_care_site_p] --&gt; D[production.care_site]
+    E[working.v_provider_p] --&gt; F[production.provider]
+</div><h4 id="62-患者データの移行05_production_deployment_datasql">6.2 患者データの移行（05_production_deployment_data.sql） </h4>
+<div class="mermaid">graph TD
+    A[working.v_person_p] --&gt; B[production.person]
+    C[working.v_death_p] --&gt; D[production.death]
+    E[working.v_visit_occurrence_p] --&gt; F[production.visit_occurrence]
+    G[working.v_visit_detail_p] --&gt; H[production.visit_detail]
+    I[working.v_observation_period_p] --&gt; J[production.observation_period]
+    K[working.v_condition_occurrence_p] --&gt; L[production.condition_occurrence]
+    M[working.v_drug_exposure_p] --&gt; N[production.drug_exposure]
+    O[working.v_device_exposure_p] --&gt; P[production.device_exposure]
+    Q[working.v_measurement_p] --&gt; R[production.measurement]
+    S[working.v_observation_p] --&gt; T[production.observation]
+    U[working.v_procedure_occurrence_p] --&gt; V[production.procedure_occurrence]
+    W[working.v_specimen_p] --&gt; X[production.specimen]
+    Y[working.v_condition_era_p] --&gt; Z[production.condition_era]
+    AA[working.v_drug_era_p] --&gt; AB[production.drug_era]
+    AC[working.v_dose_era_p] --&gt; AD[production.dose_era]
+</div><blockquote>
+<p>⚠️ <strong>重要</strong>: Production移行時は外部キー制約を一時的に無効化してデータを投入し、完了後に再有効化します。</p>
+</blockquote>
+<h2 id="テーブル命名規則">テーブル命名規則 </h2>
+<h3 id="サフィックスの意味">サフィックスの意味 </h3>
+<ul>
+<li><strong><code>_s</code></strong>: Source - 生データから抽出された初期段階</li>
+<li><strong><code>_m</code></strong>: Mapped - コード変換・マッピング済み</li>
+<li><strong><code>_f</code></strong>: Finalized - 最終確定済み（品質チェック完了）</li>
+<li><strong><code>_e</code></strong>: Error - エラーレコード（問題のあるデータ）</li>
+<li><strong><code>_p</code></strong>: Production - 本番環境投入用</li>
+</ul>
+<h2 id="実行手順">実行手順 </h2>
+<h3 id="前提条件">前提条件 </h3>
+<ol>
+<li><strong>Vocabulary データ</strong>：OMOP Vocabulary（Athena）がロード済みであること</li>
+<li><strong>Source-to-Concept Map</strong>：必要なマッピングテーブルが準備済みであること</li>
+<li><strong>ソースデータ</strong>：変換対象の生データがsourceスキーマに格納済みであること</li>
+</ol>
+<h3 id="実行方法">実行方法 </h3>
+<h4 id="ステップ1-ステージングデータの生成">ステップ1: ステージングデータの生成 </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>psql <span class="token parameter variable">-U</span> username <span class="token parameter variable">-d</span> database_name <span class="token parameter variable">-f</span> 5000_etl_execute/bat/01_etl_execution_to_stem.sql
+</code></pre><h4 id="ステップ2-最終データの生成とeraテーブルの集計">ステップ2: 最終データの生成とEraテーブルの集計 </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>psql <span class="token parameter variable">-U</span> username <span class="token parameter variable">-d</span> database_name <span class="token parameter variable">-f</span> 5000_etl_execute/bat/03_etl_execution_to_final.sql
+</code></pre><h4 id="ステップ3-production環境への移行">ステップ3: Production環境への移行 </h4>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>psql <span class="token parameter variable">-U</span> username <span class="token parameter variable">-d</span> database_name <span class="token parameter variable">-f</span> 5000_etl_execute/bat/05_production_deployment_master.sql
+psql <span class="token parameter variable">-U</span> username <span class="token parameter variable">-d</span> database_name <span class="token parameter variable">-f</span> 5000_etl_execute/bat/05_production_deployment_data.sql
+</code></pre><blockquote>
+<p>💡 <strong>ヒント</strong>: バッチファイル（.bat）を使用すると、環境変数が自動的に設定されます：</p>
+<ul>
+<li><code>01_etl_execution_to_stem.bat</code></li>
+<li><code>03_etl_execution_to_final.bat</code></li>
+<li><code>05_production_deployment.bat</code></li>
+</ul>
+</blockquote>
+<h3 id="各段階での確認ポイント">各段階での確認ポイント </h3>
+<h4 id="1-ステージング処理後の確認">1. ステージング処理後の確認 </h4>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token comment">-- エラーレコードの確認</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span> <span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>person_e<span class="token punctuation">;</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span> <span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>visit_occurrence_e<span class="token punctuation">;</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span> <span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>condition_occurrence_e<span class="token punctuation">;</span>
+<span class="token comment">-- ... 他の_eテーブル</span>
+</code></pre><h4 id="2-マッピング状況の確認">2. マッピング状況の確認 </h4>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token comment">-- 未マッピングレコードの確認</span>
+<span class="token keyword keyword-SELECT">SELECT</span> event_source_value<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> 
+<span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>stem_source 
+<span class="token keyword keyword-WHERE">WHERE</span> target_concept_id <span class="token operator">=</span> <span class="token number">0</span> 
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> event_source_value<span class="token punctuation">;</span>
+
+<span class="token comment">-- ドメイン別のレコード数確認</span>
+<span class="token keyword keyword-SELECT">SELECT</span> source_domain_id<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> 
+<span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>stem_source 
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> source_domain_id<span class="token punctuation">;</span>
+</code></pre><h4 id="3-データ件数の確認">3. データ件数の確認 </h4>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token comment">-- 各段階でのレコード数比較</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token string">'person_s'</span> <span class="token keyword keyword-as">as</span> stage<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>person_s
+<span class="token keyword keyword-UNION">UNION</span> <span class="token keyword keyword-ALL">ALL</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token string">'person_m'</span> <span class="token keyword keyword-as">as</span> stage<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>person_m
+<span class="token keyword keyword-UNION">UNION</span> <span class="token keyword keyword-ALL">ALL</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token string">'person_f'</span> <span class="token keyword keyword-as">as</span> stage<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword keyword-FROM">FROM</span> working<span class="token punctuation">.</span>person_f<span class="token punctuation">;</span>
+</code></pre><h2 id="エラーハンドリング">エラーハンドリング </h2>
+<h3 id="よくあるエラーと対処法">よくあるエラーと対処法 </h3>
+<ol>
+<li>
+<p><strong>外部キー制約エラー</strong></p>
+<ul>
+<li>症状：Production環境への移行時にFK制約違反</li>
+<li>対処：<code>ALTER TABLE ... DISABLE TRIGGER ALL;</code> で制約を一時無効化</li>
+</ul>
+</li>
+<li>
+<p><strong>マッピングエラー</strong></p>
+<ul>
+<li>症状：target_concept_id = 0 が多数発生</li>
+<li>対処：source_to_concept_mapの追加・更新が必要</li>
+</ul>
+</li>
+<li>
+<p><strong>データ型エラー</strong></p>
+<ul>
+<li>症状：型変換エラー</li>
+<li>対処：ビュー定義での型キャスト処理を確認</li>
+</ul>
+</li>
+</ol>
+<h2 id="パフォーマンス最適化">パフォーマンス最適化 </h2>
+<h3 id="推奨事項">推奨事項 </h3>
+<ol>
+<li><strong>バッチ実行</strong>：大量データの場合は段階的に実行</li>
+<li><strong>インデックス</strong>：処理前に一時的にインデックスを削除</li>
+<li><strong>統計情報</strong>：処理後に統計情報を更新</li>
+</ol>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token comment">-- 統計情報の更新</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>person_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>visit_occurrence_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>condition_occurrence_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>drug_exposure_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>device_exposure<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>measurement_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>observation_period_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>condition_era_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>drug_era_f<span class="token punctuation">;</span>
+<span class="token keyword keyword-ANALYZE">ANALYZE</span> working<span class="token punctuation">.</span>dose_era_f<span class="token punctuation">;</span>
+<span class="token comment">-- ... 他のテーブル</span>
+</code></pre><h2 id="モニタリング">モニタリング </h2>
+<h3 id="ログ確認">ログ確認 </h3>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token comment">-- 処理時間の記録</span>
+\timing <span class="token keyword keyword-on">on</span>
+
+<span class="token comment">-- 進行状況の確認</span>
+<span class="token keyword keyword-SELECT">SELECT</span> schemaname<span class="token punctuation">,</span> tablename<span class="token punctuation">,</span> n_tup_ins<span class="token punctuation">,</span> n_tup_upd 
+<span class="token keyword keyword-FROM">FROM</span> pg_stat_user_tables 
+<span class="token keyword keyword-WHERE">WHERE</span> schemaname <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token string">'working'</span><span class="token punctuation">,</span> <span class="token string">'production'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h2 id="まとめ">まとめ </h2>
+<p>このETLパイプラインは、生の医療データを段階的にOMOP CDM形式に変換し、品質管理とエラーハンドリングを含む包括的なデータ処理システムです。各段階でのデータ品質確認と、適切なエラー処理により、信頼性の高いデータ変換を実現しています。</p>
+
+      </div>
+      
+      
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+  
+    </body></html>

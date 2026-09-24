@@ -1,0 +1,125 @@
+<h2>Table name: specimen</h2>
+
+<h3>Reading from observationresult</h3>
+
+<p>ターゲットテーブル:specimen
+<br>・当テーブルは主にObservationResultから作成される。
+<br>・ObservationResultの材料標準コードを&nbsp;ATHENA&nbsp;Vocabularyを介したstandard&nbsp;conceptへの変換後、standard&nbsp;conceptのdomainが&nbsp;"Specimen"&nbsp;で定義されているデータが格納される。
+<br>
+<br>本項では、ObservationResultをもとに生成された、specimenテーブルの各項目のとの出力結果の対応を記載する。
+<br>・specimenは同一患者、同一採取日時、同一材料コードで１レコードになるよう集約を行う</p>
+
+<img src="html_files/image19.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>specimen_id</td>
+		<td></td>
+		<td></td>
+		<td>一意の連番を設定する
+<br>（同一採取日時同一材料コードで複数レコード存在する場合は１レコードに集約する）</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>patient_id</td>
+		<td></td>
+		<td>person.person_source_valueと結合してperson_idを取得・登録する<br></td>
+	</tr>
+	<tr>
+		<td>specimen_concept_id</td>
+		<td>spm_cd_s</td>
+		<td>specimen_concept_idに変換
+<br>Source_to_concept_map:
+<br>VocabID:RINCHU_SPM_CD
+<br>DomainID:Measurement</td>
+		<td>臨中標準材料コードをsource_to_concept_mapを介してSNOMED,LOINC他のStandard&nbsp;Vocabularyに変換する<br></td>
+	</tr>
+	<tr>
+		<td>specimen_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817（EHR）固定とする</td>
+	</tr>
+	<tr>
+		<td>specimen_date</td>
+		<td>spm_collect_date</td>
+		<td></td>
+		<td>検体採取日をそのまま登録する<br></td>
+	</tr>
+	<tr>
+		<td>specimen_datetime</td>
+		<td>spm_collect_date<br>spm_collect_time</td>
+		<td>CASE
+<br>&nbsp;&nbsp;WHEN&nbsp;spm_collect_time&nbsp;=&nbsp;'999999'&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;spm_collect_time&nbsp;IS&nbsp;NULL&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;spm_collect_time&nbsp;~&nbsp;'^[0-9]{6}$'&nbsp;=&nbsp;false&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(spm_collect_time,&nbsp;1,&nbsp;2)::integer&nbsp;>=&nbsp;24&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(spm_collect_time,&nbsp;3,&nbsp;2)::integer&nbsp;>=&nbsp;60&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;SUBSTRING(spm_collect_time,&nbsp;5,&nbsp;2)::integer&nbsp;>=&nbsp;60&nbsp;
+<br>&nbsp;&nbsp;THEN&nbsp;TO_TIMESTAMP(spm_collect_date&nbsp;||&nbsp;'000000','YYYYMMDDHH24MISS')
+<br>&nbsp;&nbsp;ELSE&nbsp;TO_TIMESTAMP(spm_collect_date&nbsp;||&nbsp;spm_collect_time,'YYYYMMDDHH24MISS')
+<br>END&nbsp;AS&nbsp;start_datetime<br></td>
+		<td>検体採取日＋検体採取時刻を登録する<br><br></td>
+	</tr>
+	<tr>
+		<td>quantity</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>unit_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>anatomic_site_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>disease_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>specimen_source_id</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>specimen_source_value</td>
+		<td>spm_cd_s<br>spm_name_s</td>
+		<td>COALESCE(spm_cd_s,&nbsp;'')&nbsp;||&nbsp;'|'&nbsp;||&nbsp;COALESCE(spm_name_s,&nbsp;'')&nbsp;AS&nbsp;source_regvalue<br></td>
+		<td>臨中標準材料コード＋臨中標準材料名称を登録する<br><br></td>
+	</tr>
+	<tr>
+		<td>unit_source_value</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>anatomic_site_source_value</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+	<tr>
+		<td>disease_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td>（設定しない）</td>
+	</tr>
+</table>
+

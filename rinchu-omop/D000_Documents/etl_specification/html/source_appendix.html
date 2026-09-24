@@ -1,0 +1,1642 @@
+<h1>Appendix: source tables</h1>
+
+<h3>Table: patientidentification</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>pi_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sex</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>birthdate</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_birthdate</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>race</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ethnic_group</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: patientaddress</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>pa_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pa_start_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pa_end_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>postal_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: patientvisit</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>pv_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_adtsegment</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_event_occurred_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_event_occurred_time</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_admit_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_admit_time</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_discharge_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_discharge_time</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_discharge_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_datetime</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pv_admit_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pv_discharge_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pv_event_occurred_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_admit_age</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_admit_months</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pv_admit_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: prescriptiondata</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>pres_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>placer_order_no</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>rp_no</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_route</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_site</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_classification</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_administration_type</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_start_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_end_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pres_start_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pres_end_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_medicine_cd_yj</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pres_medicine_cd_yj4</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pres_medicine_cd_yj7</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_medicine_cd_hot</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pres_medicine_cd_hot7</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_pres_medicine_cd_hot9</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_medicine_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_medicine_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dosage_min</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dosage_max</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dosage_unit_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dosage_unit_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dosage_unit_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dispense_amount</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dispense_unit_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dispense_unit_cd_l</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_dispense_unit_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_total_quantity</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_total_unit_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_total_unit_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_total_unit_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_actual_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_administration_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_administration_name_s</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_administration_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_administration_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_supplement_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_supplement_name_s</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_supplement_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_supplement_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_rp_comment</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_instructions_cd</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_instructions_name</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_start_age</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_period</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_start_months</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pres_start_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: injectiondata</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>inj_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>placer_order_no</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>rp_no</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_route</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_start_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_administrative_method</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_start_time</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_end_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_end_time</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_inj_start_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_inj_end_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_medicine_cd_yj</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_inj_medicine_cd_yj4</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_inj_medicine_cd_yj7</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_medicine_cd_hot</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_inj_medicine_cd_hot7</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_inj_medicine_cd_hot9</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_medicine_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_medicine_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_administered_amount</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_dosage_unit_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_administered_unit_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_administered_unit_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_administration_notes</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_administered_per</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_indication</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_completion_status</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_start_age</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_start_months</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inj_start_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: observationresult</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>obx_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>placer_order_no</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>filler_order_no</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_set_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_sub_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_collect_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_collect_time</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_spm_collect_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_name_s</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_cd_l</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_name_s</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_cd_l</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_value_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_obx_value_l</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_unit_l</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_obx_value_s</td>
+		<td>real</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_unit_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_range_text_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_range_high_l</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_range_low_l</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_abnormal_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_result_status_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>obx_result_comment</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_collect_age</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_collect_months</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>spm_collect_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: patientdisease</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>dis_unique_id</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>patient_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>icd10_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_start_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_end_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_classification_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_suspect_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_s</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_cd_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dept_name_l</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_outcome_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_instance_id</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_management_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_name</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_exchange_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_cd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_prefix_cd</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_suffix_cd</td>
+		<td>text</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_established_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_outcome_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_dis_start_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_dis_established_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_dis_end_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>sch_dis_outcome_date</td>
+		<td>date</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_start_age</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_start_months</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_start_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_established_age</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_established_months</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dis_established_days</td>
+		<td>integer</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>data_update_date</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ts_table_update</td>
+		<td>timestamp without time zone</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: mst_medis_byomei</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>chgkbn</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>kanrino</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>byomeiname</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>byomeiname_kana</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>saitakukbn</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>exchangecd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>icd10_2013</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>icd10_2013_sub</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>yobi1</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>yobi2</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>rcptcd</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>byomeinamer</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>siyoubunya</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>rirekino</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>chgdate</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>iko_kanrino</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>tankinshikbn</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>hokengaikbn</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>yobi3</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>yobi4</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: mst_medis_hot13</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>基準番号</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>処方用番号</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>会社識別番号</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>調剤用番号</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>物流用番号</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>ｊａｎコード</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>薬価基準収載医薬品コード</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>個別医薬品コード</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>レセプト電算処理システムコード１</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>レセプト電算処理システムコード２</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>告示名称</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>販売名</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>レセプト電算処理システム医薬品名</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>規格単位</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>包装形態</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>包装単位数</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>包装単位単位</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>包装総量数</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>包装総量単位</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>区分</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>製造会社</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>販売会社</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>レコード区分</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>更新年月日</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Table: mst_zipcode</h3>
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Type</th>
+		<th>Most freq. value</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td>jiscode</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>zipcode_old</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>zipcode</td>
+		<td>character</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>prefecture_kana</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>city_kana</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>street_kana</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>prefecture</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>city</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>street</td>
+		<td>character varying</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>flag1</td>
+		<td>smallint</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>flag2</td>
+		<td>smallint</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>flag3</td>
+		<td>smallint</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>flag4</td>
+		<td>smallint</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>flag5</td>
+		<td>smallint</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>flag6</td>
+		<td>smallint</td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+

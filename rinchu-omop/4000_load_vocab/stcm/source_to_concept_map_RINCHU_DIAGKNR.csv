@@ -1,0 +1,5 @@
+﻿source_code,source_concept_id,source_vocabulary_id,source_code_description,target_concept_id,target_vocabulary_id,valid_start_date,valid_end_date,invalid_reason
+"20062024",0,"RINCHU_DIAGKNR","20062024||骨盤膿瘍",432582,"SNOMED",20020131,20991231,""
+"20075173",0,"RINCHU_DIAGKNR","20075173||不妊症の疑い",201909,"SNOMED",20020131,20991231,""
+"I0000001",45600516,"RINCHU_DIAGKNR","I0000001|C64|集合管癌",198985,"SNOMED",20020131,20991231,""
+"I0000002",45542618,"RINCHU_DIAGKNR","I0000002|C695|右涙嚢癌",36715789,"SNOMED",20170131,20991231,""

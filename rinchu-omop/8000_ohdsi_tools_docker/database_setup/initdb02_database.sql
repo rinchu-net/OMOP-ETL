@@ -1,0 +1,7 @@
+-- Create OHDSI database if not exists
+SELECT 'CREATE DATABASE "OHDSI" WITH ENCODING=''UTF8'' OWNER=ohdsi_admin LC_COLLATE=''ja_JP.UTF-8'' LC_CTYPE=''ja_JP.UTF-8'' CONNECTION LIMIT=-1 TEMPLATE template0'
+WHERE NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'OHDSI')\gexec
+
+-- Grant privileges on OHDSI database
+GRANT ALL ON DATABASE "OHDSI" TO GROUP ohdsi_admin;
+GRANT CONNECT, TEMPORARY ON DATABASE "OHDSI" TO GROUP ohdsi_app;

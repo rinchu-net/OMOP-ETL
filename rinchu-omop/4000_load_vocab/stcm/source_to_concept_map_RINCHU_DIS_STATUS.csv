@@ -1,0 +1,4 @@
+﻿source_code,source_concept_id,source_vocabulary_id,source_code_description,target_concept_id,target_vocabulary_id,valid_start_date,valid_end_date,invalid_reason
+"MAIN",0,"RINCHU_DIS_STATUS","主病名",32902,"Condition Status",20200820,20991231,""
+"SUB",0,"RINCHU_DIS_STATUS","副病名",32893,"Condition Status",20200820,20991231,""
+"UTAGAI",0,"RINCHU_DIS_STATUS","疑い病名",32899,"Condition Status",20200820,20991231,""
