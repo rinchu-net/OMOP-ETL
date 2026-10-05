@@ -1,7 +1,7 @@
 * text=auto
-*.bat text eol=crlf
-*.cmd text eol=crlf
-*.ps1 text eol=crlf
+*.[bB][aA][tT] text eol=crlf
+*.[cC][mM][dD] text eol=crlf
+*.[pP][sS]1 text eol=crlf
 *.sql text eol=lf
 
 rinchu-omop-docker-image.zip filter=lfs diff=lfs merge=lfs -text
