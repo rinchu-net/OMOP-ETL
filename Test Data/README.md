@@ -28,7 +28,7 @@ TestData/
 └── Synthea/     テストデータCSV一式（下記「収録ファイル」参照）
 ```
 
-ライセンスはリポジトリルートの [LICENSE](../../LICENSE)（Apache License 2.0）が適用されます。
+ライセンスはリポジトリルートの [LICENSE](../LICENSE)（Apache License 2.0）が適用されます。
 
 ## 収録ファイル
 
@@ -114,7 +114,7 @@ TestData/
 Copyright 2026 臨中ネットOMOP対応チーム
 
 本データセットは Apache License, Version 2.0 のもとで提供されます。  
-ライセンス全文はリポジトリルートの [LICENSE](../../LICENSE) を参照してください。
+ライセンス全文はリポジトリルートの [LICENSE](../LICENSE) を参照してください。
 
 第三者著作物の帰属表示は [NOTICE](./NOTICE) に記載しています。
 
