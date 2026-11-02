@@ -46,10 +46,10 @@ WITH etl_stem_source_observation AS (
                 -- その他の非数値データ：演算子記号（記号・日本語）を除去した値を返す
                 -- ただし、除去後に純粋な数値になる場合はNULLを返す（例: 600.0<, 180.0以上）
                 CASE
-                    WHEN TRIM(regexp_replace(obx_value_l, '(<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ)', '', 'g')) ~ '^[+-]?[0-9]*\.?[0-9]+([eE][+-]?[0-9]+)?$' THEN
+                    WHEN TRIM(regexp_replace(obx_value_l, '(<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ|超過|ﾁｮｳｶ)', '', 'g')) ~ '^[+-]?[0-9]*\.?[0-9]+([eE][+-]?[0-9]+)?$' THEN
                         NULL
                     ELSE
-                        regexp_replace(obx_value_l, '(<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ)', '', 'g')
+                        regexp_replace(obx_value_l, '(<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ|超過|ﾁｮｳｶ)', '', 'g')
                 END
         END AS value_source_value,
         'Meas Value' AS value_domain_id,    
@@ -68,8 +68,8 @@ WITH etl_stem_source_observation AS (
             WHEN obx_value_l IS NOT NULL THEN
                 CASE
                     -- 定性マーカー（()/[]括り）と不等号（記号・日本語）を除去して数値を抽出
-                    WHEN TRIM(regexp_replace(obx_value_l, '(\([+\-±]+\)|\[[+\-±]+\]|<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ)', '', 'g')) ~ '^[+-]?[0-9]*\.?[0-9]+([eE][+-]?[0-9]+)?$'
-                    THEN TRIM(regexp_replace(obx_value_l, '(\([+\-±]+\)|\[[+\-±]+\]|<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ)', '', 'g'))::numeric
+                    WHEN TRIM(regexp_replace(obx_value_l, '(\([+\-±]+\)|\[[+\-±]+\]|<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ|超過|ﾁｮｳｶ)', '', 'g')) ~ '^[+-]?[0-9]*\.?[0-9]+([eE][+-]?[0-9]+)?$'
+                    THEN TRIM(regexp_replace(obx_value_l, '(\([+\-±]+\)|\[[+\-±]+\]|<|>|<=|>=|≤|≥|≧|＜|＞|以上|以下|未満|ｲｼﾞｮｳ|ｲｶ|ﾐﾏﾝ|超過|ﾁｮｳｶ)', '', 'g'))::numeric
                     ELSE NULL
                 END
             ELSE NULL
@@ -99,6 +99,7 @@ WITH etl_stem_source_observation AS (
             WHEN obx_value_l is not NULL AND (position('未満' in obx_value_l) <> 0 OR position('ﾐﾏﾝ' in obx_value_l) <> 0) THEN '<' 
             WHEN obx_value_l is not NULL AND (position('>' in obx_value_l) <> 0 OR position('＞' in obx_value_l) <> 0) THEN '>' 
             WHEN obx_value_l is not NULL AND position('=' in obx_value_l) <> 0 THEN '=' 
+            WHEN obx_value_l is not NULL AND (position('超過' in obx_value_l) <> 0 OR position('ﾁｮｳｶ' in obx_value_l) <> 0) THEN '>' 
         END AS operator_source_value,
         'Meas Value Operator' AS operator_domain_id,
         'RINCHU_OBX_OPERATOR' AS operator_vocabulary_id,
@@ -112,6 +113,7 @@ WITH etl_stem_source_observation AS (
             WHEN obx_value_l is not NULL AND (position('未満' in obx_value_l) <> 0 OR position('ﾐﾏﾝ' in obx_value_l) <> 0) THEN '未満' 
             WHEN obx_value_l is not NULL AND (position('>' in obx_value_l) <> 0 OR position('＞' in obx_value_l) <> 0) THEN '>' 
             WHEN obx_value_l is not NULL AND position('=' in obx_value_l) <> 0 THEN '=' 
+            WHEN obx_value_l is not NULL AND (position('超過' in obx_value_l) <> 0 OR position('ﾁｮｳｶ' in obx_value_l) <> 0) THEN '超過' 
         END AS operator_source_regvalue,
         NULL::integer AS quantity,
         NULL AS anatomic_site_source_value,

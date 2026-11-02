@@ -237,7 +237,7 @@ Atlasでデータソースを選択・利用するには、WebAPIにデータソ
 
    | ファイル | 用途 |
    |--------|------|
-   | `webapi_setting\webapi_sources_sample_localdb.sql` | ホストOS上のOMOP DBに接続する場合（通常はこちら） |
+   | `webapi_setting\webapi_sources_sample_localdb.sql` | ホストOS上の単一のOMOP DBに接続する場合（通常はこちら） |
    | `webapi_setting\webapi_sources_sample_containerdb.sql` | コンテナ内のOMOP DBに接続する場合 |
 
    > [!IMPORTANT]
@@ -265,6 +265,10 @@ Atlasでデータソースを選択・利用するには、WebAPIにデータソ
 > [!TIP]
 > WebAPIデータソース登録の詳細については、OHDSI Japan のガイドを参照してください。
 > [データソースの追加 - OHDSI Japan](https://rwd-data-environment-in-hospital.github.io/Documents/Files/Add_Data_Sources.html)
+
+> [!TIP]
+> **データソースをさらに追加する場合**
+> 既存の登録を残したまま別のデータソースを追加する手順は、[WebAPIへの複数データソース登録手順](webapi_multiple_datasources.md)を参照してください。登録済みIDの確認、追加登録用SQLの作成・実行、コンテナの再起動と動作確認を解説しています。
 
 ### 4.3 Atlas
 - URL: `http://localhost:18081/atlas`

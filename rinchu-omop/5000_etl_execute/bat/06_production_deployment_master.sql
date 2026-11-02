@@ -109,39 +109,3 @@ ALTER TABLE :production_schema.relationship ENABLE TRIGGER ALL;
 ANALYZE VERBOSE :production_schema.relationship;
 DO $$ BEGIN RAISE NOTICE '[END] migrating relationship | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
 \echo =====================================================================
-
--- source_to_concept_map
-\echo =====================================================================
-DO $$ BEGIN RAISE NOTICE '[START] migrating source_to_concept_map | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
-\echo migrating source_to_concept_map ..
-ALTER TABLE :production_schema.source_to_concept_map DISABLE TRIGGER ALL;
-TRUNCATE TABLE :production_schema.source_to_concept_map CASCADE;
-INSERT INTO :production_schema.source_to_concept_map SELECT * FROM :working_schema.source_to_concept_map_f;
-ALTER TABLE :production_schema.source_to_concept_map ENABLE TRIGGER ALL;
-ANALYZE VERBOSE :production_schema.source_to_concept_map;
-DO $$ BEGIN RAISE NOTICE '[END] migrating source_to_concept_map | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
-\echo =====================================================================
-
--- metadata
-\echo =====================================================================
-DO $$ BEGIN RAISE NOTICE '[START] migrating metadata | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
-\echo migrating metadata ..
-ALTER TABLE :production_schema.metadata DISABLE TRIGGER ALL;
-TRUNCATE TABLE :production_schema.metadata CASCADE;
-INSERT INTO :production_schema.metadata SELECT * FROM :working_schema.metadata_f;
-ALTER TABLE :production_schema.metadata ENABLE TRIGGER ALL;
-ANALYZE VERBOSE :production_schema.metadata;
-DO $$ BEGIN RAISE NOTICE '[END] migrating metadata | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
-\echo =====================================================================
-
--- cdm_source
-\echo =====================================================================
-DO $$ BEGIN RAISE NOTICE '[START] migrating cdm_source | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
-\echo migrating cdm_source ..
-ALTER TABLE :production_schema.cdm_source DISABLE TRIGGER ALL;
-TRUNCATE TABLE :production_schema.cdm_source CASCADE;
-INSERT INTO :production_schema.cdm_source SELECT * FROM :working_schema.cdm_source_f;
-ALTER TABLE :production_schema.cdm_source ENABLE TRIGGER ALL;
-ANALYZE VERBOSE :production_schema.cdm_source;
-DO $$ BEGIN RAISE NOTICE '[END] migrating cdm_source | %', clock_timestamp() AT TIME ZONE 'Asia/Tokyo'; END $$;
-\echo =====================================================================
