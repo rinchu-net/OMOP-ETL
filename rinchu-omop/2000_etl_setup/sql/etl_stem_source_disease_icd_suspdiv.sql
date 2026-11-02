@@ -4,7 +4,10 @@ CREATE OR REPLACE VIEW :working_schema.v_stem_source_disease_icd_suspdiv AS
 WITH etl_disease AS (
     SELECT
         patient_id AS person_source_value,
-        sch_dis_start_date AS start_date,
+        CASE
+            WHEN sch_dis_start_date <= '1000-01-01'::date THEN sch_dis_established_date
+            ELSE sch_dis_start_date
+        END AS start_date,
         NULL::timestamp AS start_datetime,
         NULL::time AS start_time,
         COALESCE( -- OUTCOME_DATEを優先、なければEND_DATEを使用　ただし9999-12-31はNULLに変換する

@@ -877,6 +877,14 @@ ATLASでの分析に必要なデータ品質指標と記述統計を計算しま
 <h5 id="3実行方法-14">(3)実行方法 </h5>
 <p>6000_statistics <code>/bat/03_achilles_concept_count.bat </code> を実行します。</p>
 <hr>
+<h4 id="44-webapiキャッシュのクリア">4.4 WebAPIキャッシュのクリア </h4>
+<p><strong>4.1～4.3の統計処理がすべて正常終了した後、<a href="./8000_ohdsi_tools_docker/documents/webapi_cache_clear.html">WebAPIキャッシュ削除手順</a>に従って対象データソースのキャッシュを削除し、ATLASを再読み込みしてください。</strong></p>
+<blockquote>
+<p>⚠️ <strong>注意事項</strong><br>
+統計情報を更新した後は、WebAPIのキャッシュをクリアしてください。</p>
+<p>統計処理が完了しても、WebAPIに古いキャッシュが残っていると、ATLASのDashboardやコンセプト件数などに新しい統計情報が反映されません。WebAPIコンテナの再起動だけでは、DBに保存されたキャッシュは削除されません。</p>
+</blockquote>
+<hr>
 <h2 id="dログファイルの保存">D.ログファイルの保存 </h2>
 <h3 id="1実行内容-17">(1)実行内容 </h3>
 <p>ETL処理の各段階で出力されたログファイルをタイムスタンプ付きのアーカイブフォルダに保存します。<br>
