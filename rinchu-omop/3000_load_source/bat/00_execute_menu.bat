@@ -9,7 +9,7 @@ echo .
 echo ============================================================
 echo このバッチでは以下の2つの処理を順に実行します。
 echo ------------------------------------------------------------
-echo STEP1. 臨中標準DBから取得したCSVデータのインポート
+echo STEP1. 臨中標準DBのソースデータのインポート（_env.batのSOURCE_LOAD_MODE=CSV/DBで取込方式を切替）
 echo .
 echo STEP2. 各種マスタのインポート
 echo ------------------------------------------------------------
@@ -20,7 +20,7 @@ setlocal
 
 REM Execution confirmation for 01_import_source.bat
 set RUN1=N
-if not %FORCE%==1 set /p RUN1="[STEP1]臨中標準DBから取得したCSVデータのインポートを実行しますか？ (Y/N): "
+if not %FORCE%==1 set /p RUN1="[STEP1]臨中標準DBのソースデータのインポートを実行しますか？ (Y/N): "
 if /I "%RUN1%"=="Y" goto RUNSTEP1
 if "%FORCE%"=="1" goto RUNSTEP1
 

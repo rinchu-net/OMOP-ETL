@@ -153,6 +153,8 @@ Githubまたはファイル共有などから入手した当アプリケーシ�
 #### 1.2. 変換元ソースデータの配置
 
 臨中標準データベースからデータをCSV形式で抽出し、以下のフォルダに配置します。
+
+> 💡 臨中DBへOMOP DBのサーバから直接接続できる場合は、CSVを配置せずにデータベース接続で取り込むこともできます（`_env.bat`の`SOURCE_LOAD_MODE=DB`）。詳細は「[DB接続方式で取り込む場合の実行準備](#2-2db接続方式で取り込む場合の実行準備)」を参照してください。
 ```
 └── 3000_load_source/                      【ソースデータ・マスタロード】
    └── dat/                                 臨中DBデータCSV配置フォルダ
@@ -452,7 +454,9 @@ OMOP関連の以下のテーブルを作成します。
 
 #### (1)実行内容
 
-- 臨中データベース抽出データCSVをソーススキーマの臨中DBテーブルにロードします。
+- 臨中データベースのデータをソーススキーマの臨中DBテーブルにロードします。取込方式は`_env.bat`の`SOURCE_LOAD_MODE`で切り替えます。
+  - `CSV`（既定）：臨中データベースから抽出したCSVファイルをロードします。
+  - `DB`：臨中データベースへpostgres_fdwで接続し、テーブルを直接ロードします。
 - 各種マスタCSVをソーススキーマの各マスタテーブルにロードします。
 
 > ⚠️ **重要な注意事項**
@@ -464,7 +468,7 @@ OMOP関連の以下のテーブルを作成します。
 
 1. `0000_setting/_env.bat`が設定済であること
 2. データベースの作成・スキーマ作成・テーブル作成が完了していること
-3. 臨中標準データベースから抽出したCSVファイル `3000_load_source/dat/` に保存されていること。
+3. （`SOURCE_LOAD_MODE=CSV`の場合）臨中標準データベースから抽出したCSVファイル `3000_load_source/dat/` に保存されていること。`SOURCE_LOAD_MODE=DB`の場合は手順3、4の代わりに「[DB接続方式で取り込む場合の実行準備](#2-2db接続方式で取り込む場合の実行準備)」を実施してください。
    ※臨中標準データベースからCSVファイルへのデータ抽出方法は任意ですが、[臨中ネットデータベースからのデータ抽出方法](#臨中ネットデータベースからのデータ抽出方法)を参考にしてください
 4. 保存したCSVファイルは `01_import_source.sql`に記述している内容と一致していること。
    ※データベースへのロードは `01_import_source.sql`に記述している以下のコマンドで実行します。ファイル名が異なる場合は SQLファイル内のファイル名を修正する必要があります。
@@ -518,6 +522,45 @@ OMOP関連の以下のテーブルを作成します。
 - MEDIS病名マスタはダウンロードしたtxtファイルの名前だけを変更して配置する想定です。バージョンが異なるとファイル名が異なります。
 - MEDIS医薬品マスタはダウンロードしたcsvファイルの名前だけを変更して配置する想定です。バージョンが異なるとファイル名が異なります。
 - 郵便番号マスタはダウンロードしたcsvファイルをそのまま配置する想定です。不定期にファイルの名称や形式が変更になる可能性があります。
+
+#### (2-2)DB接続方式で取り込む場合の実行準備
+
+`SOURCE_LOAD_MODE=DB`の場合、`01_import_source.BAT`はOMOP DBから臨中DBへpostgres_fdwで接続し、臨中DBの7テーブル（PatientIdentification, PatientAddress, PatientVisit, PatientDisease, ObservationResult, PrescriptionData, InjectionData）をソーススキーマへ直接取り込みます。CSVファイルの抽出・配置は不要です。
+
+**1. 臨中DB側の準備（臨中DBの管理者が実施）**
+
+OMOP変換用の読み取り専用ユーザを作成し、7テーブルへのSELECT権限のみを付与します。
+
+```sql
+-- 臨中DBで実行（ユーザ名・パスワード・スキーマ名は環境に合わせて変更）
+CREATE ROLE omop_reader LOGIN PASSWORD '(your password here)';
+GRANT CONNECT ON DATABASE "(rinchu database name)" TO omop_reader;
+GRANT USAGE ON SCHEMA source TO omop_reader;
+GRANT SELECT ON source.patientidentification, source.patientaddress, source.patientvisit,
+                source.patientdisease, source.observationresult,
+                source.prescriptiondata, source.injectiondata TO omop_reader;
+```
+
+あわせて、臨中DBの`pg_hba.conf`でOMOP DBのサーバからの接続のみを許可してください（例：`host  <臨中DB名>  omop_reader  <OMOP DBサーバのIP>/32  scram-sha-256`）。
+
+**2. OMOP DB側の設定（`0000_setting/_env.bat`）**
+
+| 変数 | 内容 |
+|:--|:--|
+| `SOURCE_LOAD_MODE` | `DB`に変更 |
+| `RINCHU_HOST` / `RINCHU_PORT` | **OMOP DBのサーバから見た**臨中DBのホストとポート |
+| `RINCHU_DB` / `RINCHU_SCHEMA` | 臨中DBのデータベース名と、7テーブルが格納されているスキーマ名 |
+| `RINCHU_USER` / `RINCHU_PASSWORD` | 1.で作成した読み取り専用ユーザ |
+| `RINCHU_SSLMODE` | ネットワークを経由する場合は`require`以上を推奨 |
+| `RINCHU_FETCH_SIZE` | 臨中DBから1回に取得する行数（既定50000） |
+
+> ⚠️ **DB接続方式の注意事項**
+>
+> - 接続は**OMOP DBのサーバ**から臨中DBへ行われます（ETLを実行するPCからではありません）。OMOP DBをDockerで運用している場合は、`omopdb`コンテナから臨中DBへ到達できる必要があり、`localhost`はコンテナ自身を指します。
+> - postgres_fdw拡張を使用するため、`PGUSER`はスーパーユーザである必要があります（`ohdsi_admin_user`は既定でスーパーユーザです）。
+> - 臨中DBとOMOP DBのテーブルは**カラム名で対応付け**て取り込みます。カラム順の違いは問題になりませんが、OMOP DB側のカラムが臨中DB側に存在しない場合は取込前にエラーで停止します。臨中DB側にのみ存在するカラムは取り込まれません（ログにWARNINGを出力）。
+> - 7テーブルの取込は1つのトランザクションで実行します。途中でエラーが発生した場合、ソーステーブルは取込前の状態のまま残ります。
+> - 実行のたびに外部テーブル用スキーマ`rinchu_fdw`と外部サーバ`rinchu_srv`を作り直します。臨中DBの接続パスワードはOMOP DBのユーザマッピングに保存されます（スーパーユーザのみ参照可能）。
 
 #### (3)実行方法
 
