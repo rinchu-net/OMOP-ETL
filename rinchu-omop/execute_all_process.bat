@@ -57,7 +57,7 @@ echo   Pre-execution checklist:
 echo   - _env.bat is properly configured
 echo   - PostgreSQL is running
 echo   - Required CSV files are placed
-echo     * 3000_load_source/dat/: source data CSV
+echo     * 3000_load_source/dat/: source data CSV ^(only when SOURCE_LOAD_MODE=CSV^)
 echo     * 3000_load_source/mst/: master CSV
 echo     * 4000_load_vocab/athena/: ATHENA vocabulary CSV
 echo ====================================================================
