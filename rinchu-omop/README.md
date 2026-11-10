@@ -962,8 +962,23 @@ L000_LogArchive/
 
 ##### (1)実行内容
 
-OMOP CDMスキーマの各テーブルをCSVファイルとしてエクスポートします。
-データの配布や別環境への移行に使用できます。
+OMOP CDMスキーマの各テーブルを、施設外へ提供できるよう仮名化したCSVファイルとしてエクスポートします。
+OHDSI の [Preserving Privacy in an OMOP CDM Implementation](https://ohdsi.github.io/CommonDataModel/cdmPrivacy.html) に沿って、以下の列を除外・置換します。
+
+| 対象 | 処理 | 理由 |
+|---|---|---|
+| `person_id`（全テーブル） | 出力ごとにランダムな連番へ振り直し | 院内IDと突合できないようにする |
+| `person.person_source_value` | NULL | 院内の患者ID |
+| `person.day_of_birth`, `person.birth_datetime` | NULL | 生年月日は年月まで |
+| `care_site_id`（person, visit_occurrence, visit_detail） | NULL | 医療機関番号（施設固有情報） |
+| `drug_exposure.sig` | NULL | 処方コメント等の自由記述 |
+| `measurement.value_source_value`, `observation.value_as_string`, `observation.value_source_value` | NULL | 検査結果の原文（自由記述） |
+
+> ⚠️ **注意事項**
+>
+> - OHDSI では患者単位データは施設内に留め、集計結果のみを共有することが原則です。本エクスポートは ETL 検証などで患者単位データの提供がどうしても必要な場合に限って使用し、提供前に施設のルールに従って内容を確認してください。
+> - 出力する列は許可リスト方式で明示しています。`SELECT *` に戻さないでください。
+> - 施設内での別環境への移行には、本ツールではなく `pg_dump` を使用してください。
 
 ##### (2)実行準備
 
@@ -977,38 +992,21 @@ OMOP CDMスキーマの各テーブルをCSVファイルとしてエクスポー
 
 > ⚠️ **注意事項**
 >
-> `7000_export_omop/bat/export_omop.sql`は初期状態では **person_id < 100** の条件に限定しています。用途や目的にそった抽出条件に修正してください。
+> `7000_export_omop/bat/export_omop.sql`は初期状態では **person_id <= 1000** の患者に限定しています。用途や目的にそって、`export_person_map` を作成する箇所の抽出条件を修正してください。
 
 ```sql
-[export_omop.sql]
+[export_omop.sql（抜粋）]
+-- 抽出対象の患者と、提供用のランダムな person_id の対応表（セッション終了時に破棄）
+CREATE TEMP TABLE export_person_map AS
+SELECT
+    person_id,
+    ROW_NUMBER() OVER (ORDER BY random())::integer AS export_person_id
+FROM @schema.person
+WHERE person_id <= 1000;
+
 \echo ==== person ====
-\COPY (SELECT * FROM @schema.person WHERE person_id <= 100) TO '../dat/person.csv' WITH CSV HEADER;
-\echo ==== death ====
-\COPY (SELECT * FROM @schema.death limit 100) TO '../dat/death.csv' WITH CSV HEADER;
-\echo ==== visit_occurrence ====
-\COPY (SELECT * FROM @schema.visit_occurrence WHERE person_id <= 100) TO '../dat/visit_occurrence.csv' WITH CSV HEADER;
-\echo ==== visit_detail ====
-\COPY (SELECT * FROM @schema.visit_detail WHERE person_id <= 100) TO '../dat/visit_detail.csv' WITH CSV HEADER;
-\echo ==== condition_occurrence ====
-\COPY (SELECT * FROM @schema.condition_occurrence WHERE person_id <= 100) TO '../dat/condition_occurrence.csv' WITH CSV HEADER;
-\echo ==== drug_exposure ====
-\COPY (SELECT * FROM @schema.drug_exposure WHERE person_id <= 100) TO '../dat/drug_exposure.csv' WITH CSV HEADER;
-\echo ==== procedure_occurrence ====
-\COPY (SELECT * FROM @schema.procedure_occurrence WHERE person_id <= 100) TO '../dat/procedure_occurrence.csv' WITH CSV HEADER;
-\echo ==== measurement ====
-\COPY (SELECT * FROM @schema.measurement WHERE person_id <= 100) TO '../dat/measurement.csv' WITH CSV HEADER;
-\echo ==== observation ====
-\COPY (SELECT * FROM @schema.observation WHERE person_id <= 100) TO '../dat/observation.csv' WITH CSV HEADER;
-\echo ==== specimen ====
-\COPY (SELECT * FROM @schema.specimen WHERE person_id <= 100) TO '../dat/specimen.csv' WITH CSV HEADER;
-\echo ==== observation_period ====
-\COPY (SELECT * FROM @schema.observation_period WHERE person_id <= 100) TO '../dat/observation_period.csv' WITH CSV HEADER;
-\echo ==== condition_era ====
-\COPY (SELECT * FROM @schema.condition_era WHERE person_id <= 100) TO '../dat/condition_era.csv' WITH CSV HEADER;
-\echo ==== drug_era ====
-\COPY (SELECT * FROM @schema.drug_era WHERE person_id <= 100) TO '../dat/drug_era.csv' WITH CSV HEADER;
-\echo ==== dose_era ====
-\COPY (SELECT * FROM @schema.dose_era WHERE person_id <= 100) TO '../dat/dose_era.csv' WITH CSV HEADER;
+\COPY (SELECT m.export_person_id AS person_id, t.gender_concept_id, t.year_of_birth, t.month_of_birth, NULL::integer AS day_of_birth, NULL::timestamp AS birth_datetime, ... FROM @schema.person t JOIN export_person_map m ON m.person_id = t.person_id ORDER BY m.export_person_id) TO '../dat/person.csv' WITH CSV HEADER;
+...
 ```
 
 ---
