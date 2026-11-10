@@ -3,7 +3,8 @@ services:
     container_name: webapi
     image: rinchu/webapi:${WEBAPI_VERSION}
     ports:
-      - "18080:8080"
+      # localhostのみ公開。院内LANの他端末から利用する場合は "127.0.0.1:" を外し、認証設定とFW制限を行うこと
+      - "127.0.0.1:18080:8080"
     volumes:
       - ./webapi_setting/application.properties:/var/lib/ohdsi/webapi/WEB-INF/classes/application.properties
 #    env_file:
@@ -25,7 +26,8 @@ services:
     container_name: atlas
     image: rinchu/atlas:${ATLAS_VERSION}
     ports:
-      - "18081:8080"
+      # localhostのみ公開。院内LANの他端末から利用する場合は "127.0.0.1:" を外し、認証設定とFW制限を行うこと
+      - "127.0.0.1:18081:8080"
     environment:
       # url from Atlas Client to WebAPI container
       # recomend to set static url ({server name/ip address}:{port}/WebAPI) for Docker host)
@@ -41,7 +43,8 @@ services:
     image: rinchu/hades:${HADES_VERSION}
     container_name: hades
     ports:
-      - "18787:8787"
+      # localhostのみ公開。院内LANの他端末から利用する場合は "127.0.0.1:" を外し、認証設定とFW制限を行うこと
+      - "127.0.0.1:18787:8787"
     volumes:
       - ./hades_user:/home/rstudio/hades_user
     environment:
@@ -56,9 +59,8 @@ services:
     container_name: omopdb
     image: rinchu/omopdb:${OMOPDB_VERSION}
     ports:
-      # 0.0.0.0:15432 allows connections from any network interface
-      # Change to "127.0.0.1:15432:5432" if you want local-only access
-      - "0.0.0.0:15432:5432"
+      # localhostのみ公開。院内LANの他端末から利用する場合は "127.0.0.1:" を外し、認証設定とFW制限を行うこと
+      - "127.0.0.1:15432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -78,7 +80,8 @@ services:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
     ports:
-      - "15050:80"
+      # localhostのみ公開。院内LANの他端末から利用する場合は "127.0.0.1:" を外し、認証設定とFW制限を行うこと
+      - "127.0.0.1:15050:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
