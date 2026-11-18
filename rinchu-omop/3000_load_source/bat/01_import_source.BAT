@@ -2,7 +2,9 @@
 chcp 65001 >nul
 
 REM =====================================================
-REM   Import CSV from Rinchu standard database
+REM   Import source data from Rinchu standard database
+REM   SOURCE_LOAD_MODE=CSV : import CSV files in ..\dat
+REM   SOURCE_LOAD_MODE=DB  : import tables via postgres_fdw
 REM =====================================================
 
 REM Common settings path
@@ -30,6 +32,16 @@ SET PARAM=-h %PGHOST% -p %PGPORT% -U %PGUSER% -d %PGDATABASE%
 REM Prepare log directory
 if not exist ..\log mkdir ..\log
 set LOGFILE=..\log\%TARGET%_%LOGTS%.log
+
+REM Select source load mode (default: CSV)
+if "%SOURCE_LOAD_MODE%"=="" set SOURCE_LOAD_MODE=CSV
+if /I "%SOURCE_LOAD_MODE%"=="DB" goto :DB_LOAD
+if /I not "%SOURCE_LOAD_MODE%"=="CSV" (
+    echo [ERROR] SOURCE_LOAD_MODE must be CSV or DB: %SOURCE_LOAD_MODE%
+    echo [ERROR] SOURCE_LOAD_MODE must be CSV or DB: %SOURCE_LOAD_MODE% >> %LOGFILE%
+    set RESULT=1
+    goto :SHOW_RESULT
+)
 
 REM Check for required CSV files
 set CSV_FILES=InjectionData.csv ObservationResult.csv PatientAddress.csv PatientDisease.csv PatientIdentification.csv PatientVisit.csv PrescriptionData.csv
@@ -75,7 +87,36 @@ if "%CSV_MISSING%"=="1" (
     echo ====================================================================
     echo.
 )
+goto :SHOW_RESULT
 
+:DB_LOAD
+REM ===== Import tables from Rinchu database via postgres_fdw =====
+set DB_MISSING=0
+for %%V in (RINCHU_HOST RINCHU_PORT RINCHU_DB RINCHU_SCHEMA RINCHU_USER RINCHU_PASSWORD RINCHU_SSLMODE RINCHU_FETCH_SIZE) do (
+    if not defined %%V (
+        echo [ERROR] %%V is not set in _env.bat
+        echo [ERROR] %%V is not set in _env.bat >> %LOGFILE%
+        set DB_MISSING=1
+    )
+)
+if "%RINCHU_PASSWORD%"=="(your password here)" (
+    echo [ERROR] RINCHU_PASSWORD in _env.bat is not configured
+    echo [ERROR] RINCHU_PASSWORD in _env.bat is not configured >> %LOGFILE%
+    set DB_MISSING=1
+)
+if "%DB_MISSING%"=="1" (
+    echo [ERROR] Process aborted without executing SQL
+    echo [ERROR] Process aborted without executing SQL >> %LOGFILE%
+    set RESULT=1
+    goto :SHOW_RESULT
+)
+
+echo [INFO] Import from Rinchu DB %RINCHU_HOST%:%RINCHU_PORT%/%RINCHU_DB% schema=%RINCHU_SCHEMA%
+echo [INFO] Import from Rinchu DB %RINCHU_HOST%:%RINCHU_PORT%/%RINCHU_DB% schema=%RINCHU_SCHEMA% >> %LOGFILE%
+psql %PARAM% -v source_schema=%SOURCE_SCHEMA% -v "rinchu_host=%RINCHU_HOST%" -v "rinchu_port=%RINCHU_PORT%" -v "rinchu_db=%RINCHU_DB%" -v "rinchu_schema=%RINCHU_SCHEMA%" -v "rinchu_user=%RINCHU_USER%" -v "rinchu_password=%RINCHU_PASSWORD%" -v "rinchu_sslmode=%RINCHU_SSLMODE%" -v "rinchu_fetch_size=%RINCHU_FETCH_SIZE%" -f %TARGET%_fdw.sql >> %LOGFILE% 2>&1
+set RESULT=%ERRORLEVEL%
+
+:SHOW_RESULT
 REM Show result
 CALL %SETPATH%\ShowResult.bat %RESULT% "ソースデータのインポート" "%LOGFILE%"
 

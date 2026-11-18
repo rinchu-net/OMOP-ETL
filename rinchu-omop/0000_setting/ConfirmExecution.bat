@@ -43,6 +43,13 @@ if not "%ENVPATH%"=="" (
         echo [病院固有設定]
         echo   CARE_SITE_SOURCE_VALUE = %CARE_SITE_SOURCE_VALUE%
         echo.
+        echo [ソースデータ取込]
+        echo   SOURCE_LOAD_MODE   = %SOURCE_LOAD_MODE%
+        if /I "%SOURCE_LOAD_MODE%"=="DB" (
+            echo   RINCHU DB          = %RINCHU_HOST%:%RINCHU_PORT%/%RINCHU_DB%
+            echo   RINCHU SCHEMA/USER = %RINCHU_SCHEMA% / %RINCHU_USER%
+        )
+        echo.
     )
 )
 

@@ -256,7 +256,7 @@ The following steps will be executed in order:
    - _env.bat is properly configured
    - PostgreSQL is running
    - Required CSV files are placed
-     * 3000_load_source/dat/: source data CSV
+     * 3000_load_source/dat/: source data CSV (only when SOURCE_LOAD_MODE=CSV)
      * 3000_load_source/mst/: master CSV
      * 4000_load_vocab/athena/: ATHENA vocabulary CSV
 ====================================================================
